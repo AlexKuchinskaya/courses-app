@@ -1,0 +1,10 @@
+{
+    "compilerOptions": { 
+      "esModuleInterop": true, 
+      "jsx": "react-jsx",
+      "lib": [
+        "ES2021",
+        "dom"
+      ]
+    }
+}
