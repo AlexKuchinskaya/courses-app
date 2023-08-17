@@ -7,12 +7,15 @@ import { EmptyCourseList } from './components/EmptyCourseList/EmptyCourseList';
 
 const App = () => (
   <>
-    <Header isAuthorized={true} name='lilac-sky' />
-    {mockedCoursesList.length ? (
-      <Courses courses={mockedCoursesList} authors={mockedAuthorsList} />
-    ) : (
-      <EmptyCourseList />
-    )}
+    <Header isAuthorized={true} name='' />
+    <main className='main'>
+      <h1 className='visually-hidden'>Courses App</h1>
+      {mockedCoursesList.length ? (
+        <Courses courses={mockedCoursesList} authors={mockedAuthorsList} />
+      ) : (
+        <EmptyCourseList />
+      )}
+    </main>
   </>
 );
 

@@ -6,6 +6,7 @@ type CourseDetailProps = {
   value: string | number;
   className?: string;
 };
+
 export const CourseDetails: FC<CourseDetailProps> = (details) => {
   return (
     <div className={`course-details ${details.className}`}>

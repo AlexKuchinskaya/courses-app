@@ -1,11 +1,52 @@
-//@import url('../../styles/mixins.scss');
+@import url('../../styles/styles.scss');
 
 .course-info {
-  &__card {
+  background-color: #F7F7F7;
+  flex-grow: 1;
+
+  &__wapper {
     display: flex;
     flex-direction: column;
   }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 23px;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.08);
+    padding: 53px 64px 77px;
+    border-radius: 4px;
+    margin-bottom: 46px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333E48;
+    margin-bottom: 25px;
+  }
+
   &__card-container {
     display: flex;
+  }
+
+  &__left {
+    border-right: 1px solid #CFCFCF;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 32px;
+  }
+
+  &__right {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 32px;
+  }
+
+  &__btn {
+    width: 185px;
+    align-self: end;
   }
 }

@@ -3,6 +3,7 @@
     padding: 21px 57px 35px 31px;
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
+    background-color: #ffffff;
 
     &::after {
         position: absolute;
@@ -19,7 +20,7 @@
 
     &__title {
         margin-bottom: 10px;
-        color: #000000;
+        color: #333E48;
         font-size: 20px;
         font-weight: 700;
         line-height: 32px;
@@ -40,14 +41,21 @@
 
     &__left {
         flex: 1;
+        max-width: 677px;
     }
 
     &__right {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        max-width: 310px;
+        width: 310px;
         
+    }
+
+    &__btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 31px;
     }
 
     &__btn {

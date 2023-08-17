@@ -17,4 +17,10 @@
     }
   }
 
+  &--info {
+    > *:not(:last-child) {
+      margin-bottom: 28px;
+    }
+  }
+
 }

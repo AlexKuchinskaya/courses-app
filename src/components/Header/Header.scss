@@ -1,11 +1,19 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
+.header { 
     background-color: white;
-    padding: 12px 30px 15px 37px;
+    box-sizing: border-box;
     min-height: 80px;
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.15);
+
+
+    &__container {
+        width: 100%;
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
 
     &__login {
         display: flex;
@@ -16,5 +24,6 @@
         font-size: 14px;
         font-weight: 600;
         line-height: 20px; 
+        color: #333E48;
     }
 }

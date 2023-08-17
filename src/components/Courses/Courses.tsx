@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { CourseCard } from '../CourseCard/CourseCard';
+import { CourseCard } from './components/CourseCard/CourseCard';
 import { AuthorMock, CourseMock } from 'src/mocks';
 import './Courses.scss';
 import { Button } from '../common/Button/Button';
@@ -75,22 +75,24 @@ export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
         <CourseInfo course={courseInfo.course} onBack={showCoursesList} />
       ) : (
         <div className='courses'>
-          <div className='courses__top-container'>
-            <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+          <div className='courses__wrapper container-site'>
+            <div className='courses__top-container'>
+              <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+            </div>
+            <ul className='courses__list'>
+              {coursesWithAuthorsList.map((course) => {
+                return (
+                  <li key={course.id} className='courses__card'>
+                    <CourseCard
+                      course={course}
+                      authors={authors}
+                      showCourseInfo={showCourseInfoByCard}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <ul className='courses__list'>
-            {coursesWithAuthorsList.map((course) => {
-              return (
-                <li key={course.id} className='courses__card'>
-                  <CourseCard
-                    course={course}
-                    authors={authors}
-                    showCourseInfo={showCourseInfoByCard}
-                  />
-                </li>
-              );
-            })}
-          </ul>
         </div>
       )}
     </>
