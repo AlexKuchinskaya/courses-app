@@ -17,8 +17,7 @@ type CourseInfoState = {
 };
 
 const buttonText = 'Add new course';
-// add search bar
-// add button add course
+
 export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
   const [courseInfo, setCourseInfo] = useState<CourseInfoState>({
     isCourseInfoOpened: false,
