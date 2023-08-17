@@ -1,0 +1,22 @@
+.course-empty {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+
+  &__title {
+    margin: 0 0 24px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  &__description {
+    margin: 0 0 40px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}

@@ -8,4 +8,10 @@
       ],
       "baseUrl": ".",
     },
+    "include": [
+      "**/*.ts",
+      "**/*.tsx",
+      "src",
+      "src/declaration.d.ts",
+    ]
   }

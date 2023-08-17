@@ -1,0 +1,11 @@
+.courses {
+  &__top-container {
+    margin-bottom: 33px;
+  }
+  
+  &__list {
+    & > *:not(:last-child) {
+      margin-bottom: 33px;
+    }
+  }
+}

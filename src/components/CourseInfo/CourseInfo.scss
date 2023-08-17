@@ -1,0 +1,11 @@
+//@import url('../../styles/mixins.scss');
+
+.course-info {
+  &__card {
+    display: flex;
+    flex-direction: column;
+  }
+  &__card-container {
+    display: flex;
+  }
+}
