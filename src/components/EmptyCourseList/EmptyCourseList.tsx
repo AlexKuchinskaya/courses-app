@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { Button } from '../common/Button/Button';
 import './EmptyCourseList.scss';
-
-const buttonText = 'Add new course';
+import { ButtonTexts } from 'src/helpers/utils';
 
 export const EmptyCourseList: FC = () => {
   const onAddNewCourseBtnClick = () => {
@@ -15,7 +14,10 @@ export const EmptyCourseList: FC = () => {
       <p className='course-empty__description'>
         Please use ’Add New Course’ button to add your first course
       </p>
-      <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+      <Button
+        text={ButtonTexts.AddNewCourse}
+        onClick={onAddNewCourseBtnClick}
+      />
     </div>
   );
 };

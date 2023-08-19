@@ -4,13 +4,12 @@ import { Course } from 'src/types';
 import './CourseInfo.scss';
 import { Button } from '../common/Button/Button';
 import { getCourseDuration } from '../../helpers/getCourseDuration';
+import { ButtonTexts } from 'src/helpers/utils';
 
 type CourseInfoProps = {
   course: Course;
   onBack: () => void;
 };
-
-const buttonText = 'Back';
 
 export const CourseInfo: FC<CourseInfoProps> = ({ course, onBack }) => {
   const onBackBtnClick = () => {
@@ -50,7 +49,7 @@ export const CourseInfo: FC<CourseInfoProps> = ({ course, onBack }) => {
           </div>
         </div>
         <Button
-          text={buttonText}
+          text={ButtonTexts.Back}
           className={'course-info__btn'}
           onClick={onBackBtnClick}
         />

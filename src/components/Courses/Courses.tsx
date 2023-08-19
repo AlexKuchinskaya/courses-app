@@ -5,6 +5,7 @@ import './Courses.scss';
 import { Button } from '../common/Button/Button';
 import { Course } from 'src/types';
 import { CourseInfo } from '../CourseInfo/CourseInfo';
+import { ButtonTexts } from 'src/helpers/utils';
 
 type CoursesProps = {
   courses: CourseMock[];
@@ -15,8 +16,6 @@ type CourseInfoState = {
   isCourseInfoOpened: boolean;
   course: Course | undefined;
 };
-
-const buttonText = 'Add new course';
 
 export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
   const [courseInfo, setCourseInfo] = useState<CourseInfoState>({
@@ -76,7 +75,10 @@ export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
         <div className='courses'>
           <div className='courses__wrapper container-site'>
             <div className='courses__top-container'>
-              <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+              <Button
+                text={ButtonTexts.AddNewCourse}
+                onClick={onAddNewCourseBtnClick}
+              />
             </div>
             <ul className='courses__list'>
               {coursesWithAuthorsList.map((course) => {

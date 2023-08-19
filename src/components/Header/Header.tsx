@@ -3,6 +3,7 @@ import './Header.scss';
 import { HeaderLogo } from './components/Logo/Logo';
 import { Button } from '../common/Button/Button';
 import logo from '../../assets/logo.png';
+import { ButtonTexts } from 'src/helpers/utils';
 
 type HeaderProps = {
   isAuthorized: boolean;
@@ -10,7 +11,7 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ isAuthorized, name }) => {
-  const buttonText = isAuthorized ? 'Logout' : 'Login';
+  const buttonText = isAuthorized ? ButtonTexts.Logout : ButtonTexts.Login;
   const onAddNewCourseBtnClick = () => console.log('Click Add new course');
   return (
     <div className='header'>

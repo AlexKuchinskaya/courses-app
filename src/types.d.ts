@@ -13,3 +13,5 @@ export type AuthorsType = {
 };
 
 export type AuthorsList = AuthorsType[];
+
+export type ButtonTypes = 'button' | 'submit' | 'reset';

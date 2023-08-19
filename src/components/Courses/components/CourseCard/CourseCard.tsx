@@ -8,8 +8,8 @@ import { CourseDetails } from '../../../common/course-detail/CourseDetails';
 import { Course } from 'src/types';
 import { DeleteIcon } from '../../../assets/DeleteIcon';
 import { EditIcon } from '../../../assets/EditIcon';
+import { ButtonTexts } from 'src/helpers/utils';
 
-const buttonText = 'Show course';
 type CourseCardProps = {
   course: Course;
   authors: AuthorMock[];
@@ -60,7 +60,7 @@ export const CourseCard: FC<CourseCardProps> = ({
           </div>
           <div className='course-card__btn-container'>
             <Button
-              text={buttonText}
+              text={ButtonTexts.ShowCourse}
               className='course-card__btn'
               onClick={showCourseBtnClick}
             />
