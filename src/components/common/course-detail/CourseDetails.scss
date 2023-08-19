@@ -1,0 +1,26 @@
+.course-details {
+  display: flex;
+  //justify-content: space-between;
+  gap: 2px;
+  font-size: 16px;
+  line-height: 20px;
+
+  &__header {
+    font-weight: 700;
+  }
+
+  &--authors {
+    .course-details__value {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  &--info {
+    > *:not(:last-child) {
+      margin-bottom: 28px;
+    }
+  }
+
+}

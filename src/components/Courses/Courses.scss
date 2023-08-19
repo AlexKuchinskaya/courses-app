@@ -1,0 +1,14 @@
+.courses {
+  background: #F7F7F7;
+  flex-grow: 1;
+
+  &__top-container {
+    margin-bottom: 33px;
+  }
+  
+  &__list {
+    & > *:not(:last-child) {
+      margin-bottom: 33px;
+    }
+  }
+}
