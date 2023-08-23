@@ -6,6 +6,7 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -52,5 +53,6 @@ module.exports = {
     },
     port: 3000,
     open: true,
+    historyApiFallback: true,
   },
 };
