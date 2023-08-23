@@ -1,5 +1,11 @@
-import React, { ChangeEvent, FC, ReactNode, SyntheticEvent, useState } from 'react';
-import { ModalType } from 'src/types';
+import React, {
+  ChangeEvent,
+  FC,
+  ReactNode,
+  SyntheticEvent,
+  useState,
+} from 'react';
+import { UserType } from 'src/types';
 import { Button } from '../Button/Button';
 import { ButtonTexts } from 'src/helpers/utils';
 import { Input } from '../Input/Input';
@@ -7,7 +13,7 @@ import './Authorization.scss';
 import { Link } from 'react-router-dom';
 
 type AuthorizationProps = {
-  type: ModalType;
+  type: UserType;
   title: string;
   onClick: () => void;
   children?: ReactNode;
@@ -46,7 +52,7 @@ export const Authorization: FC<AuthorizationProps> = ({
   });
 
   const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    console.log('onchange input', evt.target.value)
+    console.log('onchange input', evt.target.value);
     setUser({ ...user, [evt.target.name]: evt.target.value });
   };
 

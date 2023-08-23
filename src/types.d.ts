@@ -15,3 +15,5 @@ export type AuthorsType = {
 export type AuthorsList = AuthorsType[];
 
 export type ButtonTypes = 'button' | 'submit' | 'reset';
+
+export type UserType = 'login' | 'registration';
