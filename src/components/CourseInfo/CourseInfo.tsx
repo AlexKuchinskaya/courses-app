@@ -5,16 +5,22 @@ import './CourseInfo.scss';
 import { Button } from '../common/Button/Button';
 import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { ButtonTexts } from 'src/helpers/utils';
+import { Link, useParams } from 'react-router-dom';
 
 type CourseInfoProps = {
-  course: Course;
-  onBack: () => void;
+  courses: Course[];
+  //onBack: () => void;
 };
 
-export const CourseInfo: FC<CourseInfoProps> = ({ course, onBack }) => {
-  const onBackBtnClick = () => {
+export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
+  /* const onBackBtnClick = () => {
     onBack();
-  };
+  }; */
+  const { courseId } = useParams();
+
+  const courseByCourseId = () => courses.find((course) => course.id === courseId);
+
+  const course = courseByCourseId();
 
   return (
     <div className='course-info'>
@@ -48,11 +54,9 @@ export const CourseInfo: FC<CourseInfoProps> = ({ course, onBack }) => {
             </div>
           </div>
         </div>
-        <Button
-          text={ButtonTexts.Back}
-          className={'course-info__btn'}
-          onClick={onBackBtnClick}
-        />
+        <Link to={'/courses'} className='button course-info__btn'>
+          {ButtonTexts.Back}
+        </Link>
       </div>
     </div>
   );

@@ -27,6 +27,7 @@ export const Input: FC<InputProps> = ({
       </label>
       <input
         id={name}
+        name={name}
         className={`input__element ${error ? 'input--error' : ''}`}
         placeholder='Input text'
         type={type}

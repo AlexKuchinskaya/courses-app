@@ -9,22 +9,14 @@ import { Course } from 'src/types';
 import { DeleteIcon } from '../../../assets/DeleteIcon';
 import { EditIcon } from '../../../assets/EditIcon';
 import { ButtonTexts } from 'src/helpers/utils';
+import { Link } from 'react-router-dom';
 
 type CourseCardProps = {
   course: Course;
   authors: AuthorMock[];
-  showCourseInfo: (arg: Course) => void;
 };
 
-export const CourseCard: FC<CourseCardProps> = ({
-  course,
-  authors,
-  showCourseInfo,
-}) => {
-  const showCourseBtnClick = () => {
-    showCourseInfo(course);
-  };
-
+export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
   const onEditCourse = () => {
     console.log('onEditCourse');
   };
@@ -59,11 +51,12 @@ export const CourseCard: FC<CourseCardProps> = ({
             />
           </div>
           <div className='course-card__btn-container'>
-            <Button
-              text={ButtonTexts.ShowCourse}
-              className='course-card__btn'
-              onClick={showCourseBtnClick}
-            />
+            <Link
+              to={`/courses/${course.id}`}
+              className='button course-card__btn'
+            >
+              {ButtonTexts.ShowCourse}
+            </Link>
             <Button
               className='button__small course-card__btn--delete'
               icon={<DeleteIcon />}

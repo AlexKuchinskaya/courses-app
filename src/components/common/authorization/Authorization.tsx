@@ -5,7 +5,7 @@ import React, {
   SyntheticEvent,
   useState,
 } from 'react';
-import { UserType } from 'src/types';
+import { User, UserRegisterDto, UserType } from 'src/types';
 import { Button } from '../Button/Button';
 import { ButtonTexts } from 'src/helpers/utils';
 import { Input } from '../Input/Input';
@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 type AuthorizationProps = {
   type: UserType;
   title: string;
-  onClick: () => void;
+  onClick: (user: UserRegisterDto) => void;
   children?: ReactNode;
 };
 
@@ -52,7 +52,6 @@ export const Authorization: FC<AuthorizationProps> = ({
   });
 
   const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    console.log('onchange input', evt.target.value);
     setUser({ ...user, [evt.target.name]: evt.target.value });
   };
 
@@ -69,7 +68,7 @@ export const Authorization: FC<AuthorizationProps> = ({
   const onSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
     validateInputs();
-    console.log('onSubmit');
+    onClick(user);
   };
 
   return (
@@ -85,7 +84,7 @@ export const Authorization: FC<AuthorizationProps> = ({
               name='name'
               value={user.name}
               error={errors.isNameError}
-              onChange={(e) => onChangeInputValue(e)}
+              onChange={onChangeInputValue}
             />
           )}
 

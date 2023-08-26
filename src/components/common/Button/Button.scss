@@ -5,8 +5,10 @@
     color: white;
     border-radius: 4px;
     background-color: #007298;
+    text-align: center;
     text-transform: uppercase;
     font-weight: 700;
+    box-sizing: border-box;
     cursor: pointer;
 
     &:hover {
