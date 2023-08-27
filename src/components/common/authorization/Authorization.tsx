@@ -39,7 +39,7 @@ export const Authorization: FC<AuthorizationProps> = ({
   onClick,
 }) => {
   const authorizationOption = authorizationOptions[type];
-  const [errors, setErros] = useState({
+  const [errors, setErrors] = useState({
     isNameError: false,
     isEmailError: false,
     isPasswordError: false,
@@ -62,7 +62,7 @@ export const Authorization: FC<AuthorizationProps> = ({
       isPasswordError: !user.password,
     };
 
-    setErros(newErrors);
+    setErrors(newErrors);
   };
 
   const onSubmit = (evt: SyntheticEvent) => {

@@ -1,4 +1,4 @@
-.input {
+.textarea {
   position: relative;
   
   &__element {
@@ -10,7 +10,13 @@
     border-radius: 4px;
     font-size: 16px;
     line-height: 24px;
+    resize: vertical;
+    
+    &--error {
+      border: 2px solid #F00;
+    }
   }
+
   &::placeholder { 
     color: #CFCFCF;
   }
@@ -25,10 +31,6 @@
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-
-  &--error {
-    border: 2px solid #F00;
   }
 
   &__error-message {

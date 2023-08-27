@@ -5,5 +5,7 @@ export const enum ButtonTexts {
   Login = 'Login',
   Logout = 'Logout',
   Back = 'Back',
-  CreateAuthor = 'Create author ',
+  CreateAuthor = 'Create author',
+  CreateCourse = 'Create course',
+  Cancel = 'Cancel'
 }

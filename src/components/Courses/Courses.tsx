@@ -38,7 +38,6 @@ export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
         <div className='courses'>
           <div className='courses__wrapper container-site'>
             <div className='courses__top-container'>
-              {/* <SearchBar coursesList={courses} /> */}
               <Link to={'/courses/add'} className='button'>
                 {ButtonTexts.AddNewCourse}
               </Link>
