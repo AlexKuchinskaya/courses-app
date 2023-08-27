@@ -8,7 +8,7 @@ import { CourseDetails } from '../../../common/course-detail/CourseDetails';
 import { Course } from 'src/types';
 import { DeleteIcon } from '../../../assets/DeleteIcon';
 import { EditIcon } from '../../../assets/EditIcon';
-import { ButtonTexts } from 'src/helpers/utils';
+import { ButtonTexts } from '../../../../enums/buttonTexts';
 import { Link } from 'react-router-dom';
 
 type CourseCardProps = {

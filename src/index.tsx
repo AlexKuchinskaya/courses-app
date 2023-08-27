@@ -9,6 +9,7 @@ import { mockedAuthorsList, mockedCoursesList } from './mocks';
 import { Course } from './types';
 import { Courses } from './components/Courses/Courses';
 import { CreateCourse } from './components/CreateCourse/CreateCourse';
+import { PathRoutes } from './enums/pathRoutes';
 
 const containerRoot = document.getElementById('root');
 const root = ReactDOM.createRoot(containerRoot);
@@ -43,18 +44,18 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="registration" element={<Registration />} />
-          <Route path="login" element={<Login />} />
+        <Route path={PathRoutes.Main} element={<App />}>
+          <Route path={PathRoutes.Registration} element={<Registration />} />
+          <Route path={PathRoutes.Login} element={<Login />} />
           <Route
-            path="courses"
+            path={PathRoutes.Courses}
             element={<Courses courses={coursesWithAuthorsList} />}
           />
           <Route
-            path={'/courses/:courseId'}
+            path={PathRoutes.CoursesId}
             element={<CourseInfo courses={coursesWithAuthorsList} />}
           />
-          <Route path={'courses/add'} element={<CreateCourse />} />
+          <Route path={PathRoutes.CoursesAdd} element={<CreateCourse />} />
         </Route>
       </Routes>
     </Router>

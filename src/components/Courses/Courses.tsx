@@ -3,7 +3,7 @@ import { CourseCard } from './components/CourseCard/CourseCard';
 import { AuthorMock } from 'src/mocks';
 import './Courses.scss';
 import { Course } from 'src/types';
-import { ButtonTexts } from 'src/helpers/utils';
+import { ButtonTexts } from '../../enums/buttonTexts';
 import { Link } from 'react-router-dom';
 import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
 

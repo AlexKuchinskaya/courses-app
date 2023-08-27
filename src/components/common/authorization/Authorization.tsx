@@ -7,10 +7,11 @@ import React, {
 } from 'react';
 import { UserRegisterDto, UserType } from 'src/types';
 import { Button } from '../Button/Button';
-import { ButtonTexts } from 'src/helpers/utils';
+import { ButtonTexts } from '../../../enums/buttonTexts';
 import { Input } from '../Input/Input';
 import './Authorization.scss';
 import { Link } from 'react-router-dom';
+import { PathRoutes } from '../../../enums/pathRoutes';
 
 type AuthorizationProps = {
   type: UserType;
@@ -23,12 +24,12 @@ const authorizationOptions = {
   login: {
     text: "If you don't have an account you may ",
     linkText: 'Registration',
-    to: '/registration',
+    to: `/${PathRoutes.Registration}`,
   },
   registration: {
     text: 'If you have an account you may ',
     linkText: 'Login',
-    to: '/login',
+    to: `/${PathRoutes.Login}`,
   },
 };
 

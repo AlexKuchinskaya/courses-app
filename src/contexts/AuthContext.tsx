@@ -8,6 +8,7 @@ import React, {
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { User, UserLoginDto } from 'src/types';
+import { PathRoutes } from '../enums/pathRoutes';
 
 export type LoginResponse = {
   successful: boolean;
@@ -21,7 +22,7 @@ type AuthContextType = {
   authToken: string | null;
   setAuthToken: React.Dispatch<React.SetStateAction<string>>;
   logout: () => void;
-  login: (user: UserLoginDto) => void
+  login: (user: UserLoginDto) => void;
 };
 
 type AuthContextProviderProps = {
@@ -45,13 +46,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       method: 'GET',
       headers: {
         Authorization: token,
-      }
+      },
     })
       .then((response) => response.json())
       .then((data) => data.result as User)
       .then((user) => setUser(user))
-      .catch(error => console.error(error))
-  }
+      .catch((error) => console.error(error));
+  };
 
   const login = (user: UserLoginDto) => {
     fetch('http://localhost:4000/login', {
@@ -76,18 +77,18 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setAuthToken(null);
     setUser(null);
     removeItem('AUTH_TOKEN');
-  }
+  };
 
-  useEffect(() => {    
+  useEffect(() => {
     const token = getItem('AUTH_TOKEN');
     if (token) {
       if (!authToken?.length) {
-        setAuthToken(token)
+        setAuthToken(token);
       }
-      navigate('/courses');
+      navigate(`/${PathRoutes.Courses}`);
       getUser(token);
     } else {
-      navigate('/login');
+      navigate(`/${PathRoutes.Login}`);
     }
   }, [authToken]);
 
@@ -99,14 +100,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         authToken,
         setAuthToken: updateAuthToken,
         login,
-        logout
+        logout,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
 
 export const useAuthContext = () => {
   return useContext(AuthContext);

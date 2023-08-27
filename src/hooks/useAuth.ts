@@ -1,5 +1,6 @@
 import { UserRegisterDto } from 'src/types';
 import { useNavigate } from 'react-router-dom';
+import { PathRoutes } from '../enums/pathRoutes';
 
 export type RegisterResponse = {
   successful: boolean;
@@ -21,7 +22,7 @@ export const useAuth = () => {
       .then((data) => data as RegisterResponse)
       .then((registerResponse) => {
         if (registerResponse.successful) {
-          navigate('/login');
+          navigate(`/${PathRoutes.Login}`);
         } else {
           console.log(registerResponse.errors);
         }

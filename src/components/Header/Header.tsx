@@ -3,15 +3,17 @@ import './Header.scss';
 import { HeaderLogo } from './components/Logo/Logo';
 import { Button } from '../common/Button/Button';
 import logo from '../../assets/logo.png';
-import { ButtonTexts } from 'src/helpers/utils';
+import { ButtonTexts } from '../../enums/buttonTexts';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
+import { PathRoutes } from '../../enums/pathRoutes';
 
 const Header: FC = () => {
   const { authToken, user, logout } = useAuthContext();
   const location = useLocation();
   const isAuthLocation =
-    location.pathname !== '/login' && location.pathname !== '/registration';
+    location.pathname !== PathRoutes.Login &&
+    location.pathname !== PathRoutes.Registration;
 
   const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
   const onAddNewCourseBtnClick = () => logout();

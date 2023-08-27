@@ -6,11 +6,11 @@ import { AddIcon } from '../../components/assets/AddIcon';
 import { DeleteIcon } from '../../components/assets/DeleteIcon';
 import { AuthorItem } from './components/AuthorItem/AuthorItem';
 import { Button } from '../common/Button/Button';
-import { ButtonTexts } from 'src/helpers/utils';
 import { useAuthor } from '../../hooks/useAuthor';
 import { Textarea } from '../common/Textarea/Textarea';
 import { useNavigate } from 'react-router-dom';
 import { KEY_ENTER } from '../../helpers/const';
+import { ButtonTexts } from '../../enums/buttonTexts';
 
 type CourseType = {
   id: string;
