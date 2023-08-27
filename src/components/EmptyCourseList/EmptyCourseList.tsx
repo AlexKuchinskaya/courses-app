@@ -8,24 +8,20 @@ export const EmptyCourseList: FC = () => {
   const { user } = useAuthContext();
 
   return (
-    <div className='course-empty'>
-      <h3 className='course-empty__title'>Your List Is Empty</h3>
-      <p className='course-empty__description'>
+    <div className="course-empty">
+      <h3 className="course-empty__title">Your List Is Empty</h3>
+      <p className="course-empty__description">
         Please use ’Add New Course’ button to add your first course
       </p>
-      {
-        user?.role === 'admin' ? (
-          <Link
-            className='button'
-            to={'/courses/add'}
-          >
-            {ButtonTexts.AddNewCourse}
-          </Link>
-        ) :
-          <div className='course-empty__non-admin'>
-            You don't have permissions to create a course. Please log in as ADMIN
-          </div>
-      }
+      {user?.role === 'admin' ? (
+        <Link className="button" to={'/courses/add'}>
+          {ButtonTexts.AddNewCourse}
+        </Link>
+      ) : (
+        <div className="course-empty__non-admin">
+          You don't have permissions to create a course. Please log in as ADMIN
+        </div>
+      )}
     </div>
   );
 };

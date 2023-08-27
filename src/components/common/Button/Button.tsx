@@ -23,7 +23,7 @@ export const Button: FC<ButtonProps> = ({
       onClick={onClick}
       type={type ? type : 'button'}
     >
-      {icon && <span className='icon'>{icon}</span>}
+      {icon && <span className="icon">{icon}</span>}
       {text}
     </button>
   );

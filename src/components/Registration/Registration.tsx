@@ -12,10 +12,10 @@ export const Registration: FC = () => {
   };
 
   return (
-    <div className='registration'>
+    <div className="registration">
       <Authorization
-        type='registration'
-        title='Registration'
+        type="registration"
+        title="Registration"
         onClick={onSubmit}
       ></Authorization>
     </div>

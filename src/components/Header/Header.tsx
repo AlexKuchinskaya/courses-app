@@ -8,20 +8,19 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
 
 const Header: FC = () => {
-  const { authToken, user, logout } = useAuthContext()
-  let location = useLocation();
-  const isAuthLocation = location.pathname !== '/login' && location.pathname !== '/registration';
-  
+  const { authToken, user, logout } = useAuthContext();
+  const location = useLocation();
+  const isAuthLocation =
+    location.pathname !== '/login' && location.pathname !== '/registration';
+
   const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
   const onAddNewCourseBtnClick = () => logout();
   return (
-    <div className='header'>
-      <div className='header__container'>
+    <div className="header">
+      <div className="header__container">
         <HeaderLogo logo={logo} width={111} height={48} />
-        <div className='header__login'>
-          {user?.name && (
-            <span className='header__user-name'>{user.name}</span>
-          )}
+        <div className="header__login">
+          {user?.name && <span className="header__user-name">{user.name}</span>}
           {isAuthLocation && (
             <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
           )}

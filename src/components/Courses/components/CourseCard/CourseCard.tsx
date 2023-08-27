@@ -26,18 +26,18 @@ export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
   };
 
   return (
-    <div className='course-card'>
-      <h3 className='course-card__title'>{course.title}</h3>
-      <div className='course-card__container'>
-        <div className='course-card__left'>
-          <p className='course-card__description'>{course.description}</p>
+    <div className="course-card">
+      <h3 className="course-card__title">{course.title}</h3>
+      <div className="course-card__container">
+        <div className="course-card__left">
+          <p className="course-card__description">{course.description}</p>
         </div>
-        <div className='course-card__right'>
-          <div className='course-card__info'>
+        <div className="course-card__right">
+          <div className="course-card__info">
             <CourseDetails
               title={'Authors:'}
               value={course.authors}
-              className='course-details--authors'
+              className="course-details--authors"
             />
 
             <CourseDetails
@@ -50,20 +50,20 @@ export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
               value={getCourseCreationDate(course.creationDate)}
             />
           </div>
-          <div className='course-card__btn-container'>
+          <div className="course-card__btn-container">
             <Link
               to={`/courses/${course.id}`}
-              className='button course-card__btn'
+              className="button course-card__btn"
             >
               {ButtonTexts.ShowCourse}
             </Link>
             <Button
-              className='button__small course-card__btn--delete'
+              className="button__small course-card__btn--delete"
               icon={<DeleteIcon />}
               onClick={onDeleteCourse}
             />
             <Button
-              className='button__small course-card__btn--edit'
+              className="button__small course-card__btn--edit"
               icon={<EditIcon />}
               onClick={onEditCourse}
             />

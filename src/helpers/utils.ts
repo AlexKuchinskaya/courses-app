@@ -7,5 +7,5 @@ export const enum ButtonTexts {
   Back = 'Back',
   CreateAuthor = 'Create author',
   CreateCourse = 'Create course',
-  Cancel = 'Cancel'
+  Cancel = 'Cancel',
 }

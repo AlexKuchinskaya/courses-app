@@ -33,17 +33,17 @@ export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
   return (
     <>
       {courses.length ? (
-        <div className='courses'>
-          <div className='courses__wrapper container-site'>
-            <div className='courses__top-container'>
-              <Link to={'/courses/add'} className='button'>
+        <div className="courses">
+          <div className="courses__wrapper container-site">
+            <div className="courses__top-container">
+              <Link to={'/courses/add'} className="button">
                 {ButtonTexts.AddNewCourse}
               </Link>
             </div>
-            <ul className='courses__list'>
+            <ul className="courses__list">
               {courses.map((course) => {
                 return (
-                  <li key={course.id} className='courses__card'>
+                  <li key={course.id} className="courses__card">
                     <CourseCard course={course} authors={authors} />
                   </li>
                 );

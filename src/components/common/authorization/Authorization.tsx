@@ -72,16 +72,16 @@ export const Authorization: FC<AuthorizationProps> = ({
   };
 
   return (
-    <div className='authorization'>
-      <h3 className='authorization__title'>{title}</h3>
-      <div className='authorization__container'>
-        <form className='authorization__form form'>
+    <div className="authorization">
+      <h3 className="authorization__title">{title}</h3>
+      <div className="authorization__container">
+        <form className="authorization__form form">
           {type === 'registration' && (
             <Input
-              type='text'
-              className='authorization__input'
+              type="text"
+              className="authorization__input"
               required={true}
-              name='name'
+              name="name"
               value={user.name}
               error={errors.isNameError}
               onChange={onChangeInputValue}
@@ -89,36 +89,36 @@ export const Authorization: FC<AuthorizationProps> = ({
           )}
 
           <Input
-            type='email'
-            className='authorization__input'
+            type="email"
+            className="authorization__input"
             required={true}
-            name='email'
+            name="email"
             value={user.email}
             error={errors.isEmailError}
             onChange={onChangeInputValue}
           />
 
           <Input
-            type='password'
-            className='authorization__input'
+            type="password"
+            className="authorization__input"
             required={true}
-            name='password'
+            name="password"
             value={user.password}
             error={errors.isPasswordError}
             onChange={onChangeInputValue}
           />
 
           <Button
-            className='authorization__submit'
-            type='submit'
+            className="authorization__submit"
+            type="submit"
             text={ButtonTexts.Login}
             onClick={onSubmit}
           />
         </form>
 
-        <div className='authorization__link-container'>
+        <div className="authorization__link-container">
           {authorizationOption.text}
-          <Link to={authorizationOption.to} className='authorization__link'>
+          <Link to={authorizationOption.to} className="authorization__link">
             {authorizationOption.linkText}
           </Link>
         </div>

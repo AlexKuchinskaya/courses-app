@@ -19,7 +19,7 @@ type CourseType = {
   creationDate: string;
   duration: number;
   authors: AuthorId[];
-}
+};
 
 type AuthorId = number;
 
@@ -40,13 +40,13 @@ export const CreateCourse: FC = () => {
     title: '',
     description: '',
     duration: 0,
-  })
+  });
 
   const [errors, setErrors] = useState({
     isTitleError: false,
     isDescriptionError: false,
     isDurationError: false,
-  })
+  });
 
   const [isSuccessful, setSuccessful] = useState(false);
 
@@ -62,11 +62,11 @@ export const CreateCourse: FC = () => {
 
   const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
     setCourse({ ...course, [evt.target.name]: evt.target.value });
-  }
+  };
 
   const onChangeTextAreaValue = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setCourse({ ...course, [evt.target.name]: evt.target.value });
-  }
+  };
 
   const onSubmit = () => {
     validateInputs();
@@ -74,45 +74,46 @@ export const CreateCourse: FC = () => {
     if (isSuccessful) {
       navigate('/courses');
     }
-  }
+  };
 
   const handleKeyPress = (evt: KeyboardEvent<HTMLInputElement>) => {
     if (evt.key === KEY_ENTER) {
       onCreateAuthor();
     }
-  }
+  };
 
   return (
-    <div className='create-course'>
+    <div className="create-course">
       <div className="container-site">
-        <h2 className='create-course__header'>Course edit/create page</h2>
-        <form className='form create-course__form' onSubmit={onSubmit}>
+        <h2 className="create-course__header">Course edit/create page</h2>
+        <form className="form create-course__form" onSubmit={onSubmit}>
           <div className="create-course__form-container">
-            <h3 className='create-course__title'>Main info</h3>
+            <h3 className="create-course__title">Main info</h3>
             <Input
-              type='text'
-              className='create-course__input create-course__input--full-width'
+              type="text"
+              className="create-course__input create-course__input--full-width"
               required={true}
-              name='title'
+              name="title"
               value={course.title}
               error={errors.isTitleError}
               onChange={onChangeInputValue}
             />
 
-            <h3 className='create-course__title'>Description</h3>
+            <h3 className="create-course__title">Description</h3>
             <Textarea
-              name='description'
-              className='create-course__textarea'
+              name="description"
+              className="create-course__textarea"
               value={course.description}
               error={errors.isDescriptionError}
-              onChange={onChangeTextAreaValue} />
+              onChange={onChangeTextAreaValue}
+            />
 
-            <h3 className='create-course__title'>Duration</h3>
+            <h3 className="create-course__title">Duration</h3>
             <Input
-              type='number'
-              className='create-course__input'
+              type="number"
+              className="create-course__input"
               required={true}
-              name='duration'
+              name="duration"
               value={course.duration}
               error={errors.isDurationError}
               onChange={onChangeInputValue}
@@ -126,19 +127,19 @@ export const CreateCourse: FC = () => {
 
             <div className="create-course__authors-list">
               <div className="create-course__authors-container">
-                <h3 className='create-course__title'>Authors</h3>
+                <h3 className="create-course__title">Authors</h3>
                 <Input
-                  type='text'
-                  className='create-course__input'
+                  type="text"
+                  className="create-course__input"
                   required={true}
-                  name='Author Name'
+                  name="Author Name"
                   value={authorValue}
                   error={false}
                   onChange={onChangeAuthorValue}
                   onKeyUp={handleKeyPress}
                   children={
                     <Button
-                      className='create-course__create-author'
+                      className="create-course__create-author"
                       text={ButtonTexts.CreateAuthor}
                       onClick={onCreateAuthor}
                     />
@@ -154,32 +155,32 @@ export const CreateCourse: FC = () => {
                         name={author.authorName}
                         onClick={() => onAddAuthorToCourseList(author.idAuthor)}
                       />
-                    )
+                    );
                   })}
                 </div>
               </div>
 
-              <div className='create-course__authors-container'>
-                <h3 className='create-course__title'>Course Authors</h3>
+              <div className="create-course__authors-container">
+                <h3 className="create-course__title">Course Authors</h3>
                 <div className="create-course__course-authors">
-                  {
-                    courseAuthors.length ? (
-                      courseAuthors.map((courseAuthor) => {
-                        return (
-                          <AuthorItem
-                            key={courseAuthor.idAuthor}
-                            icon={<DeleteIcon />}
-                            name={courseAuthor.authorName}
-                            onClick={() => onDeleteFromCourseAuthors(courseAuthor.idAuthor)}
-                          />
-                        )
-                      })
-                    )
-                      : (
-                        <p className="create-course__course-authors-empty">
-                          Author list is empty
-                        </p>
-                      )}
+                  {courseAuthors.length ? (
+                    courseAuthors.map((courseAuthor) => {
+                      return (
+                        <AuthorItem
+                          key={courseAuthor.idAuthor}
+                          icon={<DeleteIcon />}
+                          name={courseAuthor.authorName}
+                          onClick={() =>
+                            onDeleteFromCourseAuthors(courseAuthor.idAuthor)
+                          }
+                        />
+                      );
+                    })
+                  ) : (
+                    <p className="create-course__course-authors-empty">
+                      Author list is empty
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -187,12 +188,12 @@ export const CreateCourse: FC = () => {
 
           <div className="create-course__action-btns">
             <Button
-              className='create-course__action-btn'
+              className="create-course__action-btn"
               text={ButtonTexts.Cancel}
             />
             <Button
-              type='button'
-              className='create-course__action-btn'
+              type="button"
+              className="create-course__action-btn"
               text={ButtonTexts.CreateCourse}
               onClick={onSubmit}
             />

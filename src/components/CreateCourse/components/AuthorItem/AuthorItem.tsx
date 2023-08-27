@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from "react";
-import { Button } from "../../../common/Button/Button";
+import React, { FC, ReactNode } from 'react';
+import { Button } from '../../../common/Button/Button';
 import './AuthorItem.scss';
 
 type AuthorItemType = {
@@ -8,11 +8,11 @@ type AuthorItemType = {
   onClick: () => void;
 };
 
-export const AuthorItem: FC<AuthorItemType> = ({ name, icon, onClick }) => {  
+export const AuthorItem: FC<AuthorItemType> = ({ name, icon, onClick }) => {
   return (
     <div className="authors-item">
       <div className="authors-item__name">{name}</div>
-      <Button className={'authors-item__btn'} icon={icon} onClick={onClick}/>
+      <Button className={'authors-item__btn'} icon={icon} onClick={onClick} />
     </div>
   );
-}
+};
