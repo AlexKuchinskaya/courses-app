@@ -7,12 +7,7 @@ import { ButtonTexts } from 'src/helpers/utils';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
 
-type HeaderProps = {
-  isAuthorized: boolean;
-  name?: string;
-};
-
-const Header: FC<HeaderProps> = ({}) => {
+const Header: FC = () => {
   const { authToken, user, logout } = useAuthContext()
   let location = useLocation();
   const isAuthLocation = location.pathname !== '/login' && location.pathname !== '/registration';

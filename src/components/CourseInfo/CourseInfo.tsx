@@ -2,20 +2,15 @@ import React, { FC } from 'react';
 import { CourseDetails } from '../common/course-detail/CourseDetails';
 import { Course } from 'src/types';
 import './CourseInfo.scss';
-import { Button } from '../common/Button/Button';
 import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { ButtonTexts } from 'src/helpers/utils';
 import { Link, useParams } from 'react-router-dom';
 
 type CourseInfoProps = {
   courses: Course[];
-  //onBack: () => void;
 };
 
 export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
-  /* const onBackBtnClick = () => {
-    onBack();
-  }; */
   const { courseId } = useParams();
 
   const courseByCourseId = () => courses.find((course) => course.id === courseId);

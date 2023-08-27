@@ -9,7 +9,7 @@ import { AuthContextProvider } from './contexts/AuthContext';
 
 const App = () => (
   <AuthContextProvider>
-    <Header isAuthorized={true} name='' />
+    <Header />
     <main className='main'>
       <h1 className='visually-hidden'>Courses App</h1>
       <Outlet />

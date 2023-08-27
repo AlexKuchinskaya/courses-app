@@ -6,7 +6,6 @@ export type RegisterResponse = {
   errors: string[];
 };
 
-
 export const useAuth = () => {
   const navigate = useNavigate();
 

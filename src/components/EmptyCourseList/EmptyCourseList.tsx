@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import './EmptyCourseList.scss';
 import { ButtonTexts } from 'src/helpers/utils';
 import { useAuthContext } from '../../contexts/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const EmptyCourseList: FC = () => {
   const { user } = useAuthContext();

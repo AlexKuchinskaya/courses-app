@@ -10,7 +10,7 @@ import { ButtonTexts } from 'src/helpers/utils';
 import { useAuthor } from '../../hooks/useAuthor';
 import { Textarea } from '../common/Textarea/Textarea';
 import { useNavigate } from 'react-router-dom';
-import { KEY_ENTER } from 'src/helpers/const';
+import { KEY_ENTER } from '../../helpers/const';
 
 type CourseType = {
   id: string;
@@ -70,7 +70,7 @@ export const CreateCourse: FC = () => {
 
   const onSubmit = () => {
     validateInputs();
-    
+
     if (isSuccessful) {
       navigate('/courses');
     }

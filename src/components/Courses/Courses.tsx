@@ -1,11 +1,9 @@
 import React, { FC, useState } from 'react';
 import { CourseCard } from './components/CourseCard/CourseCard';
-import { AuthorMock, CourseMock } from 'src/mocks';
+import { AuthorMock } from 'src/mocks';
 import './Courses.scss';
 import { Course } from 'src/types';
-import { CourseInfo } from '../CourseInfo/CourseInfo';
 import { ButtonTexts } from 'src/helpers/utils';
-import { SearchBar } from '../SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
 import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
 

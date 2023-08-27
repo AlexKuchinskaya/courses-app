@@ -5,7 +5,7 @@ import React, {
   SyntheticEvent,
   useState,
 } from 'react';
-import { User, UserRegisterDto, UserType } from 'src/types';
+import { UserRegisterDto, UserType } from 'src/types';
 import { Button } from '../Button/Button';
 import { ButtonTexts } from 'src/helpers/utils';
 import { Input } from '../Input/Input';
