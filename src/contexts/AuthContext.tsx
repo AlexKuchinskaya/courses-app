@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const getUser = (token: string) => {
-    fetch('http://192.168.1.43:4000/users/me', {
+    fetch('http://localhost:4000/users/me', {
       method: 'GET',
       headers: {
         Authorization: token,
@@ -54,7 +54,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }
 
   const login = (user: UserLoginDto) => {
-    fetch('http://192.168.1.43:4000/login', {
+    fetch('http://localhost:4000/login', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
