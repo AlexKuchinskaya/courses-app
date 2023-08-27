@@ -7,7 +7,7 @@ export type RegisterResponse = {
 };
 
 
-export function useAuth() {
+export const useAuth = () => {
   const navigate = useNavigate();
 
   const register = (user: UserRegisterDto) => {
