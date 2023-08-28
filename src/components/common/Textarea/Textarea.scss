@@ -1,0 +1,42 @@
+.textarea {
+  position: relative;
+  
+  &__element {
+    display: block;
+    margin: 0;
+    padding: 13px 16px;
+    box-sizing: border-box;
+    border: 1px solid #CFCFCF;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    resize: vertical;
+    
+    &--error {
+      border: 2px solid #F00;
+    }
+  }
+
+  &::placeholder { 
+    color: #CFCFCF;
+  }
+
+  &__label {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__error-message {
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    color: #F00;
+  }
+}

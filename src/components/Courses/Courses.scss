@@ -3,6 +3,8 @@
   flex-grow: 1;
 
   &__top-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 33px;
   }
   

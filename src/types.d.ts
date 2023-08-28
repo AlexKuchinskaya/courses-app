@@ -13,3 +13,27 @@ export type AuthorsType = {
 };
 
 export type AuthorsList = AuthorsType[];
+
+export type ButtonTypes = 'button' | 'submit' | 'reset';
+
+export type UserType = 'login' | 'registration';
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: 'user' | 'admin';
+  password: string;
+};
+
+export type UserRegisterDto = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type UserLoginDto = {
+  name: string;
+  email: string;
+  password: string;
+};

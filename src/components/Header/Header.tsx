@@ -3,24 +3,29 @@ import './Header.scss';
 import { HeaderLogo } from './components/Logo/Logo';
 import { Button } from '../common/Button/Button';
 import logo from '../../assets/logo.png';
+import { ButtonTexts } from '../../enums/buttonTexts';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useLocation } from 'react-router-dom';
+import { PathRoutes } from '../../enums/pathRoutes';
 
-type HeaderProps = {
-  isAuthorized: boolean;
-  name?: string;
-};
+const Header: FC = () => {
+  const { authToken, user, logout } = useAuthContext();
+  const location = useLocation();
+  const isAuthLocation =
+    location.pathname !== PathRoutes.Login &&
+    location.pathname !== PathRoutes.Registration;
 
-const Header: FC<HeaderProps> = ({ isAuthorized, name }) => {
-  const buttonText = isAuthorized ? 'Logout' : 'Login';
-  const onAddNewCourseBtnClick = () => console.log('Click Add new course');
+  const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
+  const onAddNewCourseBtnClick = () => logout();
   return (
-    <div className='header'>
-      <div className='header__container'>
+    <div className="header">
+      <div className="header__container">
         <HeaderLogo logo={logo} width={111} height={48} />
-        <div className='header__login'>
-          {name && isAuthorized && (
-            <span className='header__user-name'>{name}</span>
+        <div className="header__login">
+          {user?.name && <span className="header__user-name">{user.name}</span>}
+          {isAuthLocation && (
+            <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
           )}
-          <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
         </div>
       </div>
     </div>

@@ -1,0 +1,56 @@
+.authorization {
+  display: flex;
+  flex-direction: column;
+  
+  &__title {
+    text-align: center;
+    margin-bottom: 36px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  &__container {
+    padding: 77px 150px 60px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #CFCFCF;
+  }
+
+  &__link-container {
+    margin-top: 38px;
+  }
+
+  &__form {
+    width: 286px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  &__link-container {
+    width: 286px;
+    text-align: center;
+  }
+
+  &__link {
+    color: black;
+    font-weight: 700;
+
+    &:hover {
+      color: #333E48;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+  }
+}
+
+.form {
+  > *:not(:last-child) {
+    margin-bottom: 34px;
+  }
+
+}
