@@ -3,7 +3,7 @@ import { CourseDetails } from '../common/course-detail/CourseDetails';
 import { Course } from 'src/types';
 import './CourseInfo.scss';
 import { getCourseDuration } from '../../helpers/getCourseDuration';
-import { ButtonTexts } from '../..//enums/buttonTexts';
+import { ButtonTexts } from '../../enums/buttonTexts';
 import { Link, useParams } from 'react-router-dom';
 
 type CourseInfoProps = {

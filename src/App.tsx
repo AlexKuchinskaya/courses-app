@@ -8,7 +8,7 @@ const App = () => (
   <AuthContextProvider>
     <Header />
     <main className="main">
-      <h1 className="visually-hidden">Courses App</h1>
+      <h1 className="main__header visually-hidden">Courses App</h1>
       <Outlet />
     </main>
   </AuthContextProvider>

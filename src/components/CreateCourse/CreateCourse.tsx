@@ -18,10 +18,8 @@ type CourseType = {
   description: string;
   creationDate: string;
   duration: number;
-  authors: AuthorId[];
+  authors: number[];
 };
-
-type AuthorId = number;
 
 export const CreateCourse: FC = () => {
   const {
