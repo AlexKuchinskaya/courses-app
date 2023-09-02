@@ -14,18 +14,6 @@ import store from './store/index';
 const containerRoot = document.getElementById('root');
 const root = ReactDOM.createRoot(containerRoot);
 
-/* const getCoursesWithAuthorsList = () => {
-  return mockedCoursesList.map((course) => {
-    const authorList = getListAuthors(course.authors);
-    return {
-      ...course,
-      authors: authorList,
-    };
-  });
-};
-
-const coursesWithAuthorsList: Course[] = getCoursesWithAuthorsList(); */
-
 root.render(
   <Provider store={store}>
     <React.StrictMode>
