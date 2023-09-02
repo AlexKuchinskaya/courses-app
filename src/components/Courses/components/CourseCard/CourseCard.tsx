@@ -1,23 +1,25 @@
 import React, { FC } from 'react';
-import { Button } from '../../../common/Button/Button';
 import './CourseCard.scss';
-import { getCourseDuration } from '../../../../helpers/getCourseDuration';
-import { getCourseCreationDate } from '../../../../helpers/getCourseCreationDate';
-import { CourseDetails } from '../../../common/course-detail/CourseDetails';
-import { Course, CourseType } from '../../../../types';
-import { DeleteIcon } from '../../../assets/DeleteIcon';
-import { EditIcon } from '../../../assets/EditIcon';
-import { ButtonTexts } from '../../../../enums/buttonTexts';
+import { getCourseDuration } from '@helpers/getCourseDuration';
+import { getCourseCreationDate } from '@helpers/getCourseCreationDate';
+import { CourseType } from '@types';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
-import { useAuthorsCourse } from '../../../../hooks/useAuthorsCourse';
-import { getAuthors } from '../../../../store/authors/selectors';
-import { useAppSelector } from '../../../../store/utils';
+import { useAuthorsCourse } from '@hooks/useAuthorsCourse';
+import { Button } from '@components/common/Button/Button';
+import { CourseDetails } from '@components/common/course-detail/CourseDetails';
+import { EditIcon } from '@components/assets/EditIcon';
+import { DeleteIcon } from '@components/assets/DeleteIcon';
+import { useAppDispatch, useAppSelector } from '@store/utils';
+import { getAuthors } from '@store/authors/selectors';
+import { deleteCourseAction } from '@store/courses/actions';
 
 type CourseCardProps = {
   course: CourseType;
 };
 
 export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+  const dispatch = useAppDispatch();
   const authorsList = useAppSelector(getAuthors);
   const { getListAuthors } = useAuthorsCourse();
   const coursesAuthorNames = getListAuthors(authorsList, course.authors);
@@ -28,6 +30,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
 
   const onDeleteCourse = () => {
     console.log('onDeleteCourse');
+    dispatch(deleteCourseAction(course));
   };
 
   return (

@@ -1,4 +1,4 @@
-import { AuthorsList } from 'src/types';
+import { AuthorsList } from '@types';
 
 export const useAuthorsCourse = () => {
   const getListAuthors = (

@@ -6,9 +6,9 @@ import React, {
   useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { User, UserLoginDto } from 'src/types';
-import { PathRoutes } from '../enums/pathRoutes';
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import { User, UserLoginDto } from '@types';
+import { PathRoutes } from '@enums/pathRoutes';
 
 export type LoginResponse = {
   successful: boolean;
@@ -42,7 +42,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const getUser = (token: string) => {
-    fetch('http://localhost:4000/users/me', {
+    fetch('http://192.168.1.44:4000/users/me', {
       method: 'GET',
       headers: {
         Authorization: token,
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const login = (user: UserLoginDto) => {
-    fetch('http://localhost:4000/login', {
+    fetch('http://192.168.1.44:4000/login', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -85,7 +85,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       if (!authToken?.length) {
         setAuthToken(token);
       }
-      navigate(`/${PathRoutes.Courses}`);
+      //navigate(`/${PathRoutes.Courses}`);
       getUser(token);
     } else {
       navigate(`/${PathRoutes.Login}`);

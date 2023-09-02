@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import './Header.scss';
 import { HeaderLogo } from './components/Logo/Logo';
-import { Button } from '../common/Button/Button';
-import logo from '../../assets/logo.png';
-import { ButtonTexts } from '../../enums/buttonTexts';
-import { useAuthContext } from '../../contexts/AuthContext';
+import logo from '@assets/logo.png';
+import { ButtonTexts } from '@enums/buttonTexts';
+import { useAuthContext } from '@contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
-import { PathRoutes } from '../../enums/pathRoutes';
+import { PathRoutes } from '@enums/pathRoutes';
+import { Button } from '@components/common/Button/Button';
 
 const Header: FC = () => {
   const { authToken, user, logout } = useAuthContext();

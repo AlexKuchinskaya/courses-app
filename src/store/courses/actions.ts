@@ -1,8 +1,18 @@
-import { CourseType } from '../../types';
+import { CourseType } from '@types';
 import { CoursesActionTypes } from './types';
 
 type AddNewCourseAction = {
   type: CoursesActionTypes.ADD_COURSE;
+  payload: CourseType;
+};
+
+type SaveCoursesAction = {
+  type: CoursesActionTypes.SAVE_COURSES;
+  payload: CourseType[];
+};
+
+type DeleteCoursesAction = {
+  type: CoursesActionTypes.DELETE_COURSE;
   payload: CourseType;
 };
 
@@ -13,22 +23,21 @@ export const addNewCourseAction = (
   payload: courseData,
 });
 
-/* const deleteCourseAction = (payload) => ({
+export const deleteCourseAction = (
+  payload: CourseType
+): DeleteCoursesAction => ({
   type: CoursesActionTypes.DELETE_COURSE,
   payload,
-}); */
-
-type SaveCoursesAction = {
-  type: CoursesActionTypes.SAVE_COURSES;
-  payload: CourseType[];
-};
+});
 
 export const saveCoursesAction = (payload: CourseType[]): SaveCoursesAction => {
-  console.log('payload', payload);
   return {
     type: CoursesActionTypes.SAVE_COURSES,
     payload,
   };
 };
 
-export type CoursesAction = AddNewCourseAction | SaveCoursesAction;
+export type CoursesAction =
+  | AddNewCourseAction
+  | SaveCoursesAction
+  | DeleteCoursesAction;

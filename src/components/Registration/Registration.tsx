@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Authorization } from '../common/authorization/Authorization';
 import './Registration.scss';
-import { useAuth } from '../../hooks/useAuth';
-import { UserRegisterDto } from 'src/types';
+import { UserRegisterDto } from '@types';
+import { Authorization } from '@components/common/authorization/Authorization';
+import { useAuth } from '@hooks/useAuth';
 
 export const Registration: FC = () => {
   const { register } = useAuth();

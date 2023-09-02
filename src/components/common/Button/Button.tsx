@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, SyntheticEvent } from 'react';
 import './Button.scss';
-import { ButtonTypes } from 'src/types';
+import { ButtonTypes } from '@types';
 
 type ButtonProps = {
   type?: ButtonTypes;

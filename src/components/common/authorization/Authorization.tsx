@@ -5,13 +5,13 @@ import React, {
   SyntheticEvent,
   useState,
 } from 'react';
-import { UserRegisterDto, UserType } from 'src/types';
+import { UserRegisterDto, UserType } from '@types';
 import { Button } from '../Button/Button';
-import { ButtonTexts } from '../../../enums/buttonTexts';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Input } from '../Input/Input';
 import './Authorization.scss';
 import { Link } from 'react-router-dom';
-import { PathRoutes } from '../../../enums/pathRoutes';
+import { PathRoutes } from '@enums/pathRoutes';
 
 type AuthorizationProps = {
   type: UserType;

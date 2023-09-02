@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './EmptyCourseList.scss';
-import { ButtonTexts } from 'src/enums/buttonTexts';
-import { useAuthContext } from '../../contexts/AuthContext';
+import { ButtonTexts } from '@enums/buttonTexts';
+import { useAuthContext } from '@contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 export const EmptyCourseList: FC = () => {

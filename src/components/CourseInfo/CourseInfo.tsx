@@ -1,20 +1,15 @@
 import React, { FC } from 'react';
-import { CourseDetails } from '../common/course-detail/CourseDetails';
-import { Course } from 'src/types';
 import './CourseInfo.scss';
-import { getCourseDuration } from '../../helpers/getCourseDuration';
-import { ButtonTexts } from '../../enums/buttonTexts';
+import { getCourseDuration } from '@helpers/getCourseDuration';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../store/utils';
-import { getCourses } from '../../store/courses/selectors';
-import { getAuthors } from '../../store/authors/selectors';
-import { useAuthorsCourse } from '../../hooks/useAuthorsCourse';
+import { useAuthorsCourse } from '@hooks/useAuthorsCourse';
+import { CourseDetails } from '@components/common/course-detail/CourseDetails';
+import { useAppSelector } from '@store/utils';
+import { getAuthors } from '@store/authors/selectors';
+import { getCourses } from '@store/courses/selectors';
 
-type CourseInfoProps = {
-  //courses: Course[];
-};
-
-export const CourseInfo: FC<CourseInfoProps> = () => {
+export const CourseInfo: FC = () => {
   const courses = useAppSelector(getCourses);
   const { courseId } = useParams();
   const authorsList = useAppSelector(getAuthors);

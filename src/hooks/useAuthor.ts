@@ -1,11 +1,7 @@
 import { ChangeEvent, useState } from 'react';
+import { AuthorType } from '@types';
 
-type Author = {
-  idAuthor: string;
-  authorName: string;
-};
-
-type AuthorList = Author[];
+type AuthorList = AuthorType[];
 
 export const useAuthor = () => {
   const [authorValue, setAuthorValue] = useState('');
@@ -17,7 +13,7 @@ export const useAuthor = () => {
   };
 
   const getCurrentAuthor = (list: AuthorList, id: string) =>
-    list.find((author) => author.idAuthor === id);
+    list.find((author) => author.id === id);
 
   const onCreateAuthor = () => {
     console.log(authorValue);
@@ -25,11 +21,10 @@ export const useAuthor = () => {
 
     const isAuthorExist =
       Boolean(
-        authorsList.filter((author) => author.authorName === authorValue).length
+        authorsList.filter((author) => author.name === authorValue).length
       ) ||
       Boolean(
-        courseAuthors.filter((author) => author.authorName === authorValue)
-          .length
+        courseAuthors.filter((author) => author.name === authorValue).length
       );
 
     if (isAuthorExist) {
@@ -40,8 +35,8 @@ export const useAuthor = () => {
     setAuthorsList([
       ...authorsList,
       {
-        idAuthor: crypto.randomUUID(),
-        authorName: authorValue.trim(),
+        id: crypto.randomUUID(),
+        name: authorValue.trim(),
       },
     ]);
     setAuthorValue('');

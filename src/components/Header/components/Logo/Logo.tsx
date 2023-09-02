@@ -7,5 +7,5 @@ type HeaderLogoProps = {
 };
 
 export const HeaderLogo: FC<HeaderLogoProps> = ({ logo, width, height }) => (
-  <img className='logo' src={logo} alt='Logo' width={width} height={height} />
+  <img className="logo" src={logo} alt="Logo" width={width} height={height} />
 );

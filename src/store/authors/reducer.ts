@@ -1,4 +1,4 @@
-import { AuthorsList } from '../../types';
+import { AuthorsList } from '@types';
 import { AuthorsAction } from './actions';
 import { AuthorsActionTypes } from './types';
 

@@ -1,14 +1,14 @@
 import React, { FC, useState, useEffect } from 'react';
 import { CourseCard } from './components/CourseCard/CourseCard';
 import './Courses.scss';
-import { AuthorsList, Course, CourseType } from 'src/types';
-import { ButtonTexts } from '../../enums/buttonTexts';
+import { AuthorsList, Course, CourseType } from '@types';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
 import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
-import { useAppDispatch, useAppSelector } from '../../store/utils';
-import { getCourses } from '../../store/courses/selectors';
-import { saveCoursesAction } from '../../store/courses/actions';
-import { saveAuthorsAction } from '../../store/authors/actions';
+import { useAppDispatch, useAppSelector } from '@store/utils';
+import { saveAuthorsAction } from '@store/authors/actions';
+import { saveCoursesAction } from '@store/courses/actions';
+import { getCourses } from '@store/courses/selectors';
 
 type CourseInfoState = {
   isCourseInfoOpened: boolean;

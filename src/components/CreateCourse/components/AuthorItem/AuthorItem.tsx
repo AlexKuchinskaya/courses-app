@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-import { Button } from '../../../common/Button/Button';
 import './AuthorItem.scss';
+import { Button } from '@components/common/Button/Button';
 
 type AuthorItemType = {
   name: string;
