@@ -3,20 +3,25 @@ import { Button } from '../../../common/Button/Button';
 import './CourseCard.scss';
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { getCourseCreationDate } from '../../../../helpers/getCourseCreationDate';
-import { AuthorMock } from '../../../../mocks';
 import { CourseDetails } from '../../../common/course-detail/CourseDetails';
-import { Course } from 'src/types';
+import { Course, CourseType } from '../../../../types';
 import { DeleteIcon } from '../../../assets/DeleteIcon';
 import { EditIcon } from '../../../assets/EditIcon';
 import { ButtonTexts } from '../../../../enums/buttonTexts';
 import { Link } from 'react-router-dom';
+import { useAuthorsCourse } from '../../../../hooks/useAuthorsCourse';
+import { getAuthors } from '../../../../store/authors/selectors';
+import { useAppSelector } from '../../../../store/utils';
 
 type CourseCardProps = {
-  course: Course;
-  authors: AuthorMock[];
+  course: CourseType;
 };
 
-export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
+export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+  const authorsList = useAppSelector(getAuthors);
+  const { getListAuthors } = useAuthorsCourse();
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
+
   const onEditCourse = () => {
     console.log('onEditCourse');
   };
@@ -36,7 +41,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
           <div className="course-card__info">
             <CourseDetails
               title={'Authors:'}
-              value={course.authors}
+              value={coursesAuthorNames.join(' ,')}
               className="course-details--authors"
             />
 

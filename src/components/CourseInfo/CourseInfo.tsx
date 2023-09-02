@@ -5,18 +5,26 @@ import './CourseInfo.scss';
 import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { ButtonTexts } from '../../enums/buttonTexts';
 import { Link, useParams } from 'react-router-dom';
+import { useAppSelector } from '../../store/utils';
+import { getCourses } from '../../store/courses/selectors';
+import { getAuthors } from '../../store/authors/selectors';
+import { useAuthorsCourse } from '../../hooks/useAuthorsCourse';
 
 type CourseInfoProps = {
-  courses: Course[];
+  //courses: Course[];
 };
 
-export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
+export const CourseInfo: FC<CourseInfoProps> = () => {
+  const courses = useAppSelector(getCourses);
   const { courseId } = useParams();
+  const authorsList = useAppSelector(getAuthors);
+  const { getListAuthors } = useAuthorsCourse();
 
   const courseByCourseId = () =>
     courses.find((course) => course.id === courseId);
 
   const course = courseByCourseId();
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
 
   return (
     <div className="course-info">
@@ -34,7 +42,7 @@ export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
               />
               <CourseDetails
                 title={'Authors:'}
-                value={course.authors}
+                value={coursesAuthorNames.join(' ,')}
                 className="course-details--info course-details--authors"
               />
               <CourseDetails
