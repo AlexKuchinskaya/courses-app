@@ -11,7 +11,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   const register = (user: UserRegisterDto) => {
-    fetch('http://192.168.1.44:4000/register', {
+    fetch('http://localhost:4000/register', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

@@ -19,7 +19,7 @@ export const Courses: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetch('http://192.168.1.44:4000/courses/all', {
+    fetch('http://localhost:4000/courses/all', {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -31,7 +31,7 @@ export const Courses: FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://192.168.1.44:4000/authors/all', {
+    fetch('http://localhost:4000/authors/all', {
       method: 'GET',
     })
       .then((response) => response.json())
