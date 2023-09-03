@@ -6,12 +6,12 @@ import { Authorization } from '@components/common/authorization/Authorization';
 
 export const Login: FC = () => {
   const { login } = useAuthContext();
-  const onSubmit = (user: UserLoginDto) => {
+  const handleSubmit = (user: UserLoginDto) => {
     login(user);
   };
   return (
     <div className="login">
-      <Authorization type="login" title="Login" onClick={onSubmit} />
+      <Authorization type="login" title="Login" onClick={handleSubmit} />
     </div>
   );
 };

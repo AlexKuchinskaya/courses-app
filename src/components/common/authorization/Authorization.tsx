@@ -57,7 +57,7 @@ export const Authorization: FC<AuthorizationProps> = ({
     password: null,
   });
 
-  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
@@ -71,7 +71,7 @@ export const Authorization: FC<AuthorizationProps> = ({
     setErrors(newErrors);
   };
 
-  const onSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     validateInputs();
     onClick(user);
@@ -90,7 +90,7 @@ export const Authorization: FC<AuthorizationProps> = ({
               name="name"
               value={user.name}
               error={errors.isNameError}
-              onChange={onChangeInputValue}
+              onChange={handleChangeInputValue}
             />
           )}
 
@@ -101,7 +101,7 @@ export const Authorization: FC<AuthorizationProps> = ({
             name="email"
             value={user.email}
             error={errors.isEmailError}
-            onChange={onChangeInputValue}
+            onChange={handleChangeInputValue}
           />
 
           <Input
@@ -111,14 +111,14 @@ export const Authorization: FC<AuthorizationProps> = ({
             name="password"
             value={user.password}
             error={errors.isPasswordError}
-            onChange={onChangeInputValue}
+            onChange={handleChangeInputValue}
           />
 
           <Button
             className="authorization__submit"
             type="submit"
             text={ButtonTexts.Login}
-            onClick={onSubmit}
+            onClick={handleSubmit}
           />
         </form>
 

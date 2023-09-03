@@ -13,7 +13,6 @@ import { useAuthor } from '@hooks/useAuthor';
 import { useNavigate } from 'react-router-dom';
 import { KEY_ENTER } from '@helpers/const';
 import { ButtonTexts } from '@enums/buttonTexts';
-import { AddIcon } from '@components/assets/AddIcon';
 import { DeleteIcon } from '@components/assets/DeleteIcon';
 import { Button } from '@components/common/Button/Button';
 import { Textarea } from '@components/common/Textarea/Textarea';
@@ -60,20 +59,17 @@ export const CreateCourse: FC = () => {
     setErrors(newErrors);
   };
 
-  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setCourse({ ...course, [e.target.name]: e.target.value });
   };
 
-  const onChangeTextAreaValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeTextAreaValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCourse({ ...course, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     validateInputs();
-    console.log('courses', courses);
-    console.log('course', course);
-    console.log('autjors');
 
     if (isSuccessful) {
       dispatch(
@@ -99,7 +95,7 @@ export const CreateCourse: FC = () => {
         <h2 className="create-course__header">Course edit/create page</h2>
         <form
           className="form create-course__form"
-          onSubmit={(e) => onSubmit(e)}
+          onSubmit={(e) => handleSubmit(e)}
         >
           <div className="create-course__form-container">
             <h3 className="create-course__title">Main info</h3>
@@ -110,7 +106,7 @@ export const CreateCourse: FC = () => {
               name="title"
               value={course.title}
               error={errors.isTitleError}
-              onChange={onChangeInputValue}
+              onChange={handleChangeInputValue}
             />
 
             <h3 className="create-course__title">Description</h3>
@@ -119,7 +115,7 @@ export const CreateCourse: FC = () => {
               className="create-course__textarea"
               value={course.description}
               error={errors.isDescriptionError}
-              onChange={onChangeTextAreaValue}
+              onChange={handleChangeTextAreaValue}
             />
 
             <h3 className="create-course__title">Duration</h3>
@@ -130,7 +126,7 @@ export const CreateCourse: FC = () => {
               name="duration"
               value={course.duration}
               error={errors.isDurationError}
-              onChange={onChangeInputValue}
+              onChange={handleChangeInputValue}
               min={0}
               children={
                 <div className="create-course__format-duration">
@@ -147,15 +143,14 @@ export const CreateCourse: FC = () => {
               <div className="create-course__authors-container">
                 <h3 className="create-course__title">Course Authors</h3>
                 <div className="create-course__course-authors">
-                  {courseAuthors.length ? (
+                  {/* {courseAuthors.length ? (
                     courseAuthors.map((courseAuthor) => {
                       return (
                         <AuthorItem
                           key={courseAuthor.id}
-                          icon={<DeleteIcon />}
                           name={courseAuthor.name}
-                          onClick={() =>
-                            onDeleteFromCourseAuthors(courseAuthor.id)
+                          onClickDeleteAuthor={() =>
+                            onDeleteFromCourseAuthors(courseAuthor)
                           }
                         />
                       );
@@ -164,7 +159,7 @@ export const CreateCourse: FC = () => {
                     <p className="create-course__course-authors-empty">
                       Author list is empty
                     </p>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

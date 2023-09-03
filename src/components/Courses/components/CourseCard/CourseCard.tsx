@@ -24,11 +24,11 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
   const { getListAuthors } = useAuthorsCourse();
   const coursesAuthorNames = getListAuthors(authorsList, course.authors);
 
-  const onEditCourse = () => {
+  const hadleEditCourse = () => {
     console.log('onEditCourse');
   };
 
-  const onDeleteCourse = () => {
+  const handleDeleteCourse = () => {
     console.log('onDeleteCourse');
     dispatch(deleteCourseAction(course));
   };
@@ -68,12 +68,12 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
             <Button
               className="button__small course-card__btn--delete"
               icon={<DeleteIcon />}
-              onClick={onDeleteCourse}
+              onClick={handleDeleteCourse}
             />
             <Button
               className="button__small course-card__btn--edit"
               icon={<EditIcon />}
-              onClick={onEditCourse}
+              onClick={hadleEditCourse}
             />
           </div>
         </div>

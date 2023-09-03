@@ -11,6 +11,11 @@ type AddAuthorsAction = {
   payload: AuthorType;
 };
 
+type DeleteAuthorsAction = {
+  type: AuthorsActionTypes.DELETE_AUTHOR;
+  payload: AuthorType;
+};
+
 export const saveAuthorsAction = (payload: AuthorsList): SaveAuthorsAction => {
   return {
     type: AuthorsActionTypes.SAVE_AUTHORS,
@@ -25,4 +30,16 @@ export const addAuthorsAction = (payload: AuthorType): AddAuthorsAction => {
   };
 };
 
-export type AuthorsAction = SaveAuthorsAction | AddAuthorsAction;
+export const deleteAuthorsAction = (
+  payload: AuthorType
+): DeleteAuthorsAction => {
+  return {
+    type: AuthorsActionTypes.DELETE_AUTHOR,
+    payload,
+  };
+};
+
+export type AuthorsAction =
+  | SaveAuthorsAction
+  | AddAuthorsAction
+  | DeleteAuthorsAction;

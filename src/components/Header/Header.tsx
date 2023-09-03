@@ -16,7 +16,7 @@ const Header: FC = () => {
     location.pathname !== PathRoutes.Registration;
 
   const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
-  const onAddNewCourseBtnClick = () => logout();
+  const handleAuthentification = () => logout();
   return (
     <div className="header">
       <div className="header__container">
@@ -24,7 +24,7 @@ const Header: FC = () => {
         <div className="header__login">
           {user?.name && <span className="header__user-name">{user.name}</span>}
           {isAuthLocation && (
-            <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+            <Button text={buttonText} onClick={handleAuthentification} />
           )}
         </div>
       </div>

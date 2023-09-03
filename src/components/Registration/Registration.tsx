@@ -7,7 +7,7 @@ import { useAuth } from '@hooks/useAuth';
 export const Registration: FC = () => {
   const { register } = useAuth();
 
-  const onSubmit = (user: UserRegisterDto) => {
+  const handleSubmit = (user: UserRegisterDto) => {
     register(user);
   };
 
@@ -16,7 +16,7 @@ export const Registration: FC = () => {
       <Authorization
         type="registration"
         title="Registration"
-        onClick={onSubmit}
+        onClick={handleSubmit}
       ></Authorization>
     </div>
   );
