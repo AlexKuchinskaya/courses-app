@@ -22,6 +22,12 @@ import { getCourses } from '@store/courses/selectors';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import { AuthorList } from '@components/AuthorList/AuthorList';
 
+type CourseInput = {
+  title: string | null;
+  description: string | null;
+  duration: number;
+};
+
 export const CreateCourse: FC = () => {
   const { courseAuthors, onCreateAuthor, onDeleteFromCourseAuthors } =
     useAuthor();
@@ -30,9 +36,9 @@ export const CreateCourse: FC = () => {
   const dispatch = useAppDispatch();
   const courses = useAppSelector(getCourses);
 
-  const [course, setCourse] = useState({
-    title: '',
-    description: '',
+  const [course, setCourse] = useState<CourseInput>({
+    title: null,
+    description: null,
     duration: 0,
   });
 

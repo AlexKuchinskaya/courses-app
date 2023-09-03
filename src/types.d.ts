@@ -8,7 +8,7 @@ export type Course = {
 };
 
 export type AuthorType = {
-  id: string;
+  id?: string;
   name: string;
 };
 

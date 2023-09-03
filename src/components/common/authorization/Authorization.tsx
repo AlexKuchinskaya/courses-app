@@ -20,6 +20,12 @@ type AuthorizationProps = {
   children?: ReactNode;
 };
 
+type UserInput = {
+  name: string | null;
+  email: string | null;
+  password: string | null;
+};
+
 const authorizationOptions = {
   login: {
     text: "If you don't have an account you may ",
@@ -36,7 +42,6 @@ const authorizationOptions = {
 export const Authorization: FC<AuthorizationProps> = ({
   type,
   title,
-  children,
   onClick,
 }) => {
   const authorizationOption = authorizationOptions[type];
@@ -46,10 +51,10 @@ export const Authorization: FC<AuthorizationProps> = ({
     isPasswordError: false,
   });
 
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
+  const [user, setUser] = useState<UserInput>({
+    name: null,
+    email: null,
+    password: null,
   });
 
   const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
