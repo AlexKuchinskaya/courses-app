@@ -7,7 +7,7 @@ type ButtonProps = {
   text?: string;
   className?: string;
   icon?: ReactNode;
-  onClick?: (e: SyntheticEvent) => void;
+  onClick?: ((e: SyntheticEvent) => void) | (() => void);
 };
 
 export const Button: FC<ButtonProps> = ({

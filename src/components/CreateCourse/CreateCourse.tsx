@@ -8,12 +8,9 @@ import React, {
 import { Input } from '../common/Input/Input';
 import { getCourseDuration } from '@helpers/getCourseDuration';
 import './CreateCourse.scss';
-import { AuthorItem } from './components/AuthorItem/AuthorItem';
 import { useAuthor } from '@hooks/useAuthor';
 import { useNavigate } from 'react-router-dom';
-import { KEY_ENTER } from '@helpers/const';
 import { ButtonTexts } from '@enums/buttonTexts';
-import { DeleteIcon } from '@components/assets/DeleteIcon';
 import { Button } from '@components/common/Button/Button';
 import { Textarea } from '@components/common/Textarea/Textarea';
 import { addNewCourseAction } from '@store/courses/actions';
@@ -84,9 +81,9 @@ export const CreateCourse: FC = () => {
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === KEY_ENTER) {
+    /* if (e.key === KEY_ENTER) {
       onCreateAuthor();
-    }
+    } */
   };
 
   return (
