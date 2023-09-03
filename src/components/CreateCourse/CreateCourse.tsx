@@ -17,6 +17,7 @@ import { addNewCourseAction } from '@store/courses/actions';
 import { getCourses } from '@store/courses/selectors';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import { AuthorList } from '@components/AuthorList/AuthorList';
+import { AuthorItem } from './components/AuthorItem/AuthorItem';
 
 type CourseInput = {
   title: string | null;
@@ -25,8 +26,7 @@ type CourseInput = {
 };
 
 export const CreateCourse: FC = () => {
-  const { courseAuthors, onCreateAuthor, onDeleteFromCourseAuthors } =
-    useAuthor();
+  const { courseAuthors } = useAuthor();
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -80,10 +80,8 @@ export const CreateCourse: FC = () => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    /* if (e.key === KEY_ENTER) {
-      onCreateAuthor();
-    } */
+  const handleDeleteAuthorFromCourseAuthors = () => {
+    console.log('handleDeleteAuthorFromCourseAuthors');
   };
 
   return (
@@ -140,14 +138,14 @@ export const CreateCourse: FC = () => {
               <div className="create-course__authors-container">
                 <h3 className="create-course__title">Course Authors</h3>
                 <div className="create-course__course-authors">
-                  {/* {courseAuthors.length ? (
+                  {courseAuthors.length ? (
                     courseAuthors.map((courseAuthor) => {
                       return (
                         <AuthorItem
                           key={courseAuthor.id}
                           name={courseAuthor.name}
-                          onClickDeleteAuthor={() =>
-                            onDeleteFromCourseAuthors(courseAuthor)
+                          onClickDeleteAuthor={
+                            handleDeleteAuthorFromCourseAuthors
                           }
                         />
                       );
@@ -156,7 +154,7 @@ export const CreateCourse: FC = () => {
                     <p className="create-course__course-authors-empty">
                       Author list is empty
                     </p>
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>
