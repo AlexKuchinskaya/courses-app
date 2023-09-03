@@ -20,17 +20,11 @@ import { Textarea } from '@components/common/Textarea/Textarea';
 import { addNewCourseAction } from '@store/courses/actions';
 import { getCourses } from '@store/courses/selectors';
 import { useAppDispatch, useAppSelector } from '@store/utils';
+import { AuthorList } from '@components/AuthorList/AuthorList';
 
 export const CreateCourse: FC = () => {
-  const {
-    authorValue,
-    authorsList,
-    courseAuthors,
-    onChangeAuthorValue,
-    onCreateAuthor,
-    onAddAuthorToCourseList,
-    onDeleteFromCourseAuthors,
-  } = useAuthor();
+  const { courseAuthors, onCreateAuthor, onDeleteFromCourseAuthors } =
+    useAuthor();
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -60,12 +54,12 @@ export const CreateCourse: FC = () => {
     setErrors(newErrors);
   };
 
-  const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    setCourse({ ...course, [evt.target.name]: evt.target.value });
+  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setCourse({ ...course, [e.target.name]: e.target.value });
   };
 
-  const onChangeTextAreaValue = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    setCourse({ ...course, [evt.target.name]: evt.target.value });
+  const onChangeTextAreaValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCourse({ ...course, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -87,8 +81,8 @@ export const CreateCourse: FC = () => {
     }
   };
 
-  const handleKeyPress = (evt: KeyboardEvent<HTMLInputElement>) => {
-    if (evt.key === KEY_ENTER) {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === KEY_ENTER) {
       onCreateAuthor();
     }
   };
@@ -141,37 +135,7 @@ export const CreateCourse: FC = () => {
 
             <div className="create-course__authors-list">
               <div className="create-course__authors-container">
-                <h3 className="create-course__title">Authors</h3>
-                <Input
-                  type="text"
-                  className="create-course__input"
-                  required={false}
-                  name="Author Name"
-                  value={authorValue}
-                  error={false}
-                  onChange={onChangeAuthorValue}
-                  onKeyUp={handleKeyPress}
-                  children={
-                    <Button
-                      className="create-course__create-author"
-                      text={ButtonTexts.CreateAuthor}
-                      onClick={onCreateAuthor}
-                    />
-                  }
-                />
-
-                <div className="create-course__authors__container">
-                  {authorsList.map((author) => {
-                    return (
-                      <AuthorItem
-                        key={author.id}
-                        icon={<AddIcon />}
-                        name={author.name}
-                        onClick={() => onAddAuthorToCourseList(author.id)}
-                      />
-                    );
-                  })}
-                </div>
+                <AuthorList />
               </div>
 
               <div className="create-course__authors-container">

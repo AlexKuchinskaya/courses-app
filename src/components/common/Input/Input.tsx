@@ -10,8 +10,8 @@ type InputProps = {
   className?: string;
   children?: ReactNode;
   min?: number;
-  onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  onKeyUp?: (evt: KeyboardEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
 export const Input: FC<InputProps> = ({

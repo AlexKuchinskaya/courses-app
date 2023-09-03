@@ -8,8 +8,8 @@ export const useAuthor = () => {
   const [authorsList, setAuthorsList] = useState<AuthorList>([]);
   const [courseAuthors, setCourseAuthors] = useState<AuthorList>([]);
 
-  const onChangeAuthorValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    setAuthorValue(evt.target.value);
+  const onChangeAuthorValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setAuthorValue(e.target.value);
   };
 
   const getCurrentAuthor = (list: AuthorList, id: string) =>

@@ -6,7 +6,7 @@ type TextareaProps = {
   name: string;
   value: string;
   error: boolean;
-  onChange: (evt: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export const Textarea: FC<TextareaProps> = ({

@@ -52,8 +52,8 @@ export const Authorization: FC<AuthorizationProps> = ({
     password: '',
   });
 
-  const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [evt.target.name]: evt.target.value });
+  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const validateInputs = () => {
@@ -66,8 +66,8 @@ export const Authorization: FC<AuthorizationProps> = ({
     setErrors(newErrors);
   };
 
-  const onSubmit = (evt: SyntheticEvent) => {
-    evt.preventDefault();
+  const onSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
     validateInputs();
     onClick(user);
   };
