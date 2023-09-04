@@ -1,28 +1,36 @@
 import React, { FC } from 'react';
-import { Button } from '../../../common/Button/Button';
 import './CourseCard.scss';
-import { getCourseDuration } from '../../../../helpers/getCourseDuration';
-import { getCourseCreationDate } from '../../../../helpers/getCourseCreationDate';
-import { AuthorMock } from '../../../../mocks';
-import { CourseDetails } from '../../../common/course-detail/CourseDetails';
-import { Course } from 'src/types';
-import { DeleteIcon } from '../../../assets/DeleteIcon';
-import { EditIcon } from '../../../assets/EditIcon';
-import { ButtonTexts } from '../../../../enums/buttonTexts';
+import { getCourseDuration } from '@helpers/getCourseDuration';
+import { getCourseCreationDate } from '@helpers/getCourseCreationDate';
+import { CourseType } from '@types';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
+import { useAuthorsCourse } from '@hooks/useAuthorsCourse';
+import { Button } from '@components/common/Button/Button';
+import { CourseDetails } from '@components/common/course-detail/CourseDetails';
+import { EditIcon } from '@components/assets/EditIcon';
+import { DeleteIcon } from '@components/assets/DeleteIcon';
+import { useAppDispatch, useAppSelector } from '@store/utils';
+import { getAuthors } from '@store/authors/selectors';
+import { deleteCourseAction } from '@store/courses/actions';
 
 type CourseCardProps = {
-  course: Course;
-  authors: AuthorMock[];
+  course: CourseType;
 };
 
-export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
-  const onEditCourse = () => {
+export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+  const dispatch = useAppDispatch();
+  const authorsList = useAppSelector(getAuthors);
+  const { getListAuthors } = useAuthorsCourse();
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
+
+  const hadleEditCourse = () => {
     console.log('onEditCourse');
   };
 
-  const onDeleteCourse = () => {
+  const handleDeleteCourse = () => {
     console.log('onDeleteCourse');
+    dispatch(deleteCourseAction(course));
   };
 
   return (
@@ -36,7 +44,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
           <div className="course-card__info">
             <CourseDetails
               title={'Authors:'}
-              value={course.authors}
+              value={coursesAuthorNames.join(' ,')}
               className="course-details--authors"
             />
 
@@ -60,12 +68,12 @@ export const CourseCard: FC<CourseCardProps> = ({ course, authors }) => {
             <Button
               className="button__small course-card__btn--delete"
               icon={<DeleteIcon />}
-              onClick={onDeleteCourse}
+              onClick={handleDeleteCourse}
             />
             <Button
               className="button__small course-card__btn--edit"
               icon={<EditIcon />}
-              onClick={onEditCourse}
+              onClick={hadleEditCourse}
             />
           </div>
         </div>

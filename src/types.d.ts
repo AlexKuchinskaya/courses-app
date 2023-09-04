@@ -7,12 +7,12 @@ export type Course = {
   authors: string;
 };
 
-export type AuthorsType = {
-  id: string;
+export type AuthorType = {
+  id?: string;
   name: string;
 };
 
-export type AuthorsList = AuthorsType[];
+export type AuthorsList = AuthorType[];
 
 export type ButtonTypes = 'button' | 'submit' | 'reset';
 
@@ -36,4 +36,13 @@ export type UserLoginDto = {
   name: string;
   email: string;
   password: string;
+};
+
+export type CourseType = {
+  id?: string;
+  title: string;
+  description: string;
+  creationDate?: string;
+  duration: number;
+  authors: string[];
 };

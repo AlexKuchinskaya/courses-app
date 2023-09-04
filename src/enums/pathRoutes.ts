@@ -6,5 +6,5 @@ export const enum PathRoutes {
   Login = 'login',
   Courses = `${COURSES_PATH}`,
   CoursesId = `${COURSES_PATH}/:courseId`,
-  CoursesAdd = `${COURSES_PATH}/:add`,
+  CoursesAdd = `${COURSES_PATH}/add`,
 }

@@ -6,9 +6,9 @@ import React, {
   useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { User, UserLoginDto } from 'src/types';
-import { PathRoutes } from '../enums/pathRoutes';
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import { User, UserLoginDto } from '@types';
+import { PathRoutes } from '@enums/pathRoutes';
 
 export type LoginResponse = {
   successful: boolean;
@@ -85,7 +85,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       if (!authToken?.length) {
         setAuthToken(token);
       }
-      navigate(`/${PathRoutes.Courses}`);
+      //navigate(`/${PathRoutes.Courses}`);
       getUser(token);
     } else {
       navigate(`/${PathRoutes.Login}`);

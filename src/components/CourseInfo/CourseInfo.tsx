@@ -1,22 +1,25 @@
 import React, { FC } from 'react';
-import { CourseDetails } from '../common/course-detail/CourseDetails';
-import { Course } from 'src/types';
 import './CourseInfo.scss';
-import { getCourseDuration } from '../../helpers/getCourseDuration';
-import { ButtonTexts } from '../..//enums/buttonTexts';
+import { getCourseDuration } from '@helpers/getCourseDuration';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link, useParams } from 'react-router-dom';
+import { useAuthorsCourse } from '@hooks/useAuthorsCourse';
+import { CourseDetails } from '@components/common/course-detail/CourseDetails';
+import { useAppSelector } from '@store/utils';
+import { getAuthors } from '@store/authors/selectors';
+import { getCourses } from '@store/courses/selectors';
 
-type CourseInfoProps = {
-  courses: Course[];
-};
-
-export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
+export const CourseInfo: FC = () => {
+  const courses = useAppSelector(getCourses);
   const { courseId } = useParams();
+  const authorsList = useAppSelector(getAuthors);
+  const { getListAuthors } = useAuthorsCourse();
 
   const courseByCourseId = () =>
     courses.find((course) => course.id === courseId);
 
   const course = courseByCourseId();
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
 
   return (
     <div className="course-info">
@@ -34,7 +37,7 @@ export const CourseInfo: FC<CourseInfoProps> = ({ courses }) => {
               />
               <CourseDetails
                 title={'Authors:'}
-                value={course.authors}
+                value={coursesAuthorNames.join(' ,')}
                 className="course-details--info course-details--authors"
               />
               <CourseDetails

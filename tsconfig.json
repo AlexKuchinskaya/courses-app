@@ -8,19 +8,20 @@
       ],
       "baseUrl": ".",
       "paths": {
-        "components": ["src/components/*"],
-        "helpers": ["src/helpers/*"],
-        "contexts": ["src/contexts/*"],
-        "hooks": ["src/hooks/*"],
-        "assets": ["src/assets/*"],
-        "utils": ["src/utils/*"],
-        "types": ["src/types/*"]
+        "@components/*": ["./src/components/*"],
+        "@helpers/*": ["./src/helpers/*"],
+        "@contexts/*": ["./src/contexts/*"],
+        "@hooks/*": ["./src/hooks/*"],
+        "@assets/*": ["./src/assets/*"],
+        "@types": ["./src/types"],
+        "@enums/*": ["./src/enums/*"],
+        "@store/*": ["./src/store/*"],
       }
     },
     "include": [
       "**/*.ts",
       "**/*.tsx",
-      "src",
+      "src/**/*",
       "src/declaration.d.ts",
     ]
   }

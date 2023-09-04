@@ -1,23 +1,48 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { CourseCard } from './components/CourseCard/CourseCard';
-import { AuthorMock } from 'src/mocks';
 import './Courses.scss';
-import { Course } from 'src/types';
-import { ButtonTexts } from '../../enums/buttonTexts';
+import { AuthorsList, Course, CourseType } from '@types';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
 import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
-
-type CoursesProps = {
-  courses: Course[];
-  authors?: AuthorMock[];
-};
+import { useAppDispatch, useAppSelector } from '@store/utils';
+import { saveAuthorsAction } from '@store/authors/actions';
+import { saveCoursesAction } from '@store/courses/actions';
+import { getCourses } from '@store/courses/selectors';
 
 type CourseInfoState = {
   isCourseInfoOpened: boolean;
   course: Course | undefined;
 };
 
-export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
+export const Courses: FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    fetch('http://localhost:4000/courses/all', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+        return data.result as CourseType[];
+      })
+      .then((courses) => dispatch(saveCoursesAction(courses)));
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/authors/all', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data authors', data);
+        return data.result as AuthorsList;
+      })
+      .then((authors) => dispatch(saveAuthorsAction(authors)));
+  }, []);
+
+  const courses = useAppSelector(getCourses);
   const [courseInfo, setCourseInfo] = useState<CourseInfoState>({
     isCourseInfoOpened: false,
     course: undefined,
@@ -44,7 +69,7 @@ export const Courses: FC<CoursesProps> = ({ courses, authors }) => {
               {courses.map((course) => {
                 return (
                   <li key={course.id} className="courses__card">
-                    <CourseCard course={course} authors={authors} />
+                    <CourseCard course={course} />
                   </li>
                 );
               })}

@@ -5,19 +5,25 @@ import React, {
   SyntheticEvent,
   useState,
 } from 'react';
-import { UserRegisterDto, UserType } from 'src/types';
+import { UserRegisterDto, UserType } from '@types';
 import { Button } from '../Button/Button';
-import { ButtonTexts } from '../../../enums/buttonTexts';
+import { ButtonTexts } from '@enums/buttonTexts';
 import { Input } from '../Input/Input';
 import './Authorization.scss';
 import { Link } from 'react-router-dom';
-import { PathRoutes } from '../../../enums/pathRoutes';
+import { PathRoutes } from '@enums/pathRoutes';
 
 type AuthorizationProps = {
   type: UserType;
   title: string;
   onClick: (user: UserRegisterDto) => void;
   children?: ReactNode;
+};
+
+type UserInput = {
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
 };
 
 const authorizationOptions = {
@@ -36,7 +42,6 @@ const authorizationOptions = {
 export const Authorization: FC<AuthorizationProps> = ({
   type,
   title,
-  children,
   onClick,
 }) => {
   const authorizationOption = authorizationOptions[type];
@@ -46,14 +51,14 @@ export const Authorization: FC<AuthorizationProps> = ({
     isPasswordError: false,
   });
 
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
+  const [user, setUser] = useState<UserInput>({
+    name: undefined,
+    email: undefined,
+    password: undefined,
   });
 
-  const onChangeInputValue = (evt: ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [evt.target.name]: evt.target.value });
+  const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const validateInputs = () => {
@@ -66,8 +71,8 @@ export const Authorization: FC<AuthorizationProps> = ({
     setErrors(newErrors);
   };
 
-  const onSubmit = (evt: SyntheticEvent) => {
-    evt.preventDefault();
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
     validateInputs();
     onClick(user);
   };
@@ -85,7 +90,7 @@ export const Authorization: FC<AuthorizationProps> = ({
               name="name"
               value={user.name}
               error={errors.isNameError}
-              onChange={onChangeInputValue}
+              onChange={handleChangeInputValue}
             />
           )}
 
@@ -96,7 +101,7 @@ export const Authorization: FC<AuthorizationProps> = ({
             name="email"
             value={user.email}
             error={errors.isEmailError}
-            onChange={onChangeInputValue}
+            onChange={handleChangeInputValue}
           />
 
           <Input
@@ -106,14 +111,14 @@ export const Authorization: FC<AuthorizationProps> = ({
             name="password"
             value={user.password}
             error={errors.isPasswordError}
-            onChange={onChangeInputValue}
+            onChange={handleChangeInputValue}
           />
 
           <Button
             className="authorization__submit"
             type="submit"
             text={ButtonTexts.Login}
-            onClick={onSubmit}
+            onClick={handleSubmit}
           />
         </form>
 

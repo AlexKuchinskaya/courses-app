@@ -1,13 +1,13 @@
 import React, { FC, ReactNode, SyntheticEvent } from 'react';
 import './Button.scss';
-import { ButtonTypes } from 'src/types';
+import { ButtonTypes } from '@types';
 
 type ButtonProps = {
   type?: ButtonTypes;
   text?: string;
   className?: string;
   icon?: ReactNode;
-  onClick?: (evt: SyntheticEvent) => void;
+  onClick?: ((e: SyntheticEvent) => void) | (() => void);
 };
 
 export const Button: FC<ButtonProps> = ({

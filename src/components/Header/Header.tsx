@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import './Header.scss';
 import { HeaderLogo } from './components/Logo/Logo';
-import { Button } from '../common/Button/Button';
-import logo from '../../assets/logo.png';
-import { ButtonTexts } from '../../enums/buttonTexts';
-import { useAuthContext } from '../../contexts/AuthContext';
+import logo from '@assets/logo.png';
+import { ButtonTexts } from '@enums/buttonTexts';
+import { useAuthContext } from '@contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
-import { PathRoutes } from '../../enums/pathRoutes';
+import { PathRoutes } from '@enums/pathRoutes';
+import { Button } from '@components/common/Button/Button';
 
 const Header: FC = () => {
   const { authToken, user, logout } = useAuthContext();
@@ -16,7 +16,7 @@ const Header: FC = () => {
     location.pathname !== PathRoutes.Registration;
 
   const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
-  const onAddNewCourseBtnClick = () => logout();
+  const handleAuthentification = () => logout();
   return (
     <div className="header">
       <div className="header__container">
@@ -24,7 +24,7 @@ const Header: FC = () => {
         <div className="header__login">
           {user?.name && <span className="header__user-name">{user.name}</span>}
           {isAuthLocation && (
-            <Button text={buttonText} onClick={onAddNewCourseBtnClick} />
+            <Button text={buttonText} onClick={handleAuthentification} />
           )}
         </div>
       </div>
