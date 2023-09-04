@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 import './CourseCard.scss';
-import { getCourseDuration } from '@helpers/getCourseDuration';
-import { getCourseCreationDate } from '@helpers/getCourseCreationDate';
 import { CourseType } from '@types';
 import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
@@ -13,6 +11,8 @@ import { DeleteIcon } from '@components/assets/DeleteIcon';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import { getAuthors } from '@store/authors/selectors';
 import { deleteCourseAction } from '@store/courses/actions';
+import { getCourseCreationDate } from '@utils/getCourseCreationDate';
+import { getCourseDuration } from '@utils/getCourseDuration';
 
 type CourseCardProps = {
   course: CourseType;
@@ -22,7 +22,8 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
   const dispatch = useAppDispatch();
   const authorsList = useAppSelector(getAuthors);
   const { getListAuthors } = useAuthorsCourse();
-  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
+  // eslint-disable-next-line prettier/prettier
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors).join(' ,');
 
   const hadleEditCourse = () => {
     console.log('onEditCourse');
@@ -44,7 +45,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
           <div className="course-card__info">
             <CourseDetails
               title={'Authors:'}
-              value={coursesAuthorNames.join(' ,')}
+              value={coursesAuthorNames}
               className="course-details--authors"
             />
 

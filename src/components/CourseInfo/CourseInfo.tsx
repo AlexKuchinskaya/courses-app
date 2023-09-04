@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './CourseInfo.scss';
-import { getCourseDuration } from '@helpers/getCourseDuration';
+
 import { ButtonTexts } from '@enums/buttonTexts';
 import { Link, useParams } from 'react-router-dom';
 import { useAuthorsCourse } from '@hooks/useAuthorsCourse';
@@ -8,6 +8,7 @@ import { CourseDetails } from '@components/common/course-detail/CourseDetails';
 import { useAppSelector } from '@store/utils';
 import { getAuthors } from '@store/authors/selectors';
 import { getCourses } from '@store/courses/selectors';
+import { getCourseDuration } from '@utils/getCourseDuration';
 
 export const CourseInfo: FC = () => {
   const courses = useAppSelector(getCourses);
@@ -19,7 +20,8 @@ export const CourseInfo: FC = () => {
     courses.find((course) => course.id === courseId);
 
   const course = courseByCourseId();
-  const coursesAuthorNames = getListAuthors(authorsList, course.authors);
+  // eslint-disable-next-line prettier/prettier
+  const coursesAuthorNames = getListAuthors(authorsList, course.authors).join(' ,');
 
   return (
     <div className="course-info">
@@ -37,7 +39,7 @@ export const CourseInfo: FC = () => {
               />
               <CourseDetails
                 title={'Authors:'}
-                value={coursesAuthorNames.join(' ,')}
+                value={coursesAuthorNames}
                 className="course-details--info course-details--authors"
               />
               <CourseDetails

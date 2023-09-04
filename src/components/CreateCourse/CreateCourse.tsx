@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { Input } from '../common/Input/Input';
-import { getCourseDuration } from '@helpers/getCourseDuration';
+
 import './CreateCourse.scss';
 import { useAuthor } from '@hooks/useAuthor';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +18,7 @@ import { getCourses } from '@store/courses/selectors';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import { AuthorList } from '@components/AuthorList/AuthorList';
 import { AuthorItem } from './components/AuthorItem/AuthorItem';
+import { getCourseDuration } from '@utils/getCourseDuration';
 
 type CourseInput = {
   title: string | null;
