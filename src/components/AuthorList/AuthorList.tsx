@@ -1,5 +1,3 @@
-import { AuthorItem } from '@components/CreateCourse/components/AuthorItem/AuthorItem';
-
 import { Button } from '@components/common/Button/Button';
 import { Input } from '@components/common/Input/Input';
 import { ButtonTexts } from '@enums/buttonTexts';
@@ -7,25 +5,22 @@ import { getAuthors } from '@store/authors/selectors';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import './AuthorList.scss';
-import { addAuthorsAction, deleteAuthorsAction } from '@store/authors/actions';
-import { AuthorType, AuthorsList as Authors } from '@types';
+import { addAuthorAction } from '@store/authors/actions';
+import { useAuthContext } from '@contexts/AuthContext';
 
-type AuthorInput = string | null;
+type AuthorInput = string | undefined;
+
 export const AuthorList: FC = () => {
   const authorsList = useAppSelector(getAuthors);
   const dispatch = useAppDispatch();
+  const { authToken } = useAuthContext();
 
-  const [authorValue, setAuthorValue] = useState<AuthorInput>(null);
+  const [authorValue, setAuthorValue] = useState<AuthorInput>(undefined);
   const [isAuthorValueError, setIsAuthorValueError] = useState(false);
-
-  //const [courseAuthors, setCourseAuthors] = useState<AuthorList>([]);
 
   const handleChangeAuthorValue = (e: ChangeEvent<HTMLInputElement>) => {
     setAuthorValue(e.target.value);
   };
-
-  const getCurrentAuthor = (list: Authors, id: string) =>
-    list.find((author) => author.id === id);
 
   const handleCreateAuthor = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,43 +39,17 @@ export const AuthorList: FC = () => {
       return;
     }
 
-    dispatch(addAuthorsAction({ name: authorValue }));
+    dispatch(addAuthorAction(authorValue, authToken));
+    //dispatch(addAuthorsAction({ name: authorValue }));
     console.log('authorsList', authorsList);
     setAuthorValue('');
     setIsAuthorValueError(false);
   };
 
-  const handleAddAuthorToCourseList = (id: string) => {
-    /* const currentAuthor = getCurrentAuthor(authorsList, id);
-
-    if (currentAuthor) {
-      const filteredAuthorsList = authorsList.filter(
-        (author) => author !== currentAuthor
-      );
-      setAuthorsList(filteredAuthorsList);
-    }
-
-    setCourseAuthors([...courseAuthors, currentAuthor]); */
-    console.log('add to course')
-  };
-
-  const handleDeleteFromAuthorsList = (author: AuthorType) => {
-    /* const currentAuthorCourse = getCurrentAuthor(courseAuthors, id);
-
-    if (currentAuthorCourse) {
-      const filteredCourseAuthorsList = courseAuthors.filter(
-        (author) => author !== currentAuthorCourse
-      );
-      setCourseAuthors(filteredCourseAuthorsList);
-    } */
-
-    dispatch(deleteAuthorsAction(author));
-  };
-
   return (
     <div className="author-list">
       <h3 className="author-list__title">Authors</h3>
-      <form className="author-list__form" onSubmit={handleCreateAuthor}>
+      <div className="author-list__form">
         <Input
           type="text"
           className="author-list__input"
@@ -91,22 +60,10 @@ export const AuthorList: FC = () => {
           onChange={handleChangeAuthorValue}
         />
         <Button
-          type="submit"
           className="create-course__create-author"
           text={ButtonTexts.CreateAuthor}
+          onClick={handleCreateAuthor}
         />
-      </form>
-      <div className="author-list__list-container">
-        {authorsList.map((author) => {
-          return (
-            <AuthorItem
-              key={author.id}
-              name={author.name}
-              onClickDeleteAuthor={() => handleDeleteFromAuthorsList(author)}
-              onClickAddAuthor={() => handleAddAuthorToCourseList(author.id)}
-            />
-          );
-        })}
       </div>
     </div>
   );

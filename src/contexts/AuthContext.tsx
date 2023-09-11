@@ -5,10 +5,12 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 import { User, UserLoginDto } from '@types';
 import { PathRoutes } from '@enums/pathRoutes';
+import { AUTH_TOKEN } from '@utils/const';
+import { API_PATH } from '@enums/pathApi';
 
 export type LoginResponse = {
   successful: boolean;
@@ -21,7 +23,7 @@ type AuthContextType = {
   setUser: React.Dispatch<React.SetStateAction<User>>;
   authToken: string | null;
   setAuthToken: React.Dispatch<React.SetStateAction<string>>;
-  logout: () => void;
+  logout: (token: string) => void;
   login: (user: UserLoginDto) => void;
 };
 
@@ -38,11 +40,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const updateAuthToken = (token: string) => {
     setAuthToken(token);
-    setItem('AUTH_TOKEN', token);
+    setItem(AUTH_TOKEN, token);
   };
 
   const getUser = (token: string) => {
-    fetch('http://localhost:4000/users/me', {
+    fetch(`${API_PATH}/users/me`, {
       method: 'GET',
       headers: {
         Authorization: token,
@@ -55,7 +57,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const login = (user: UserLoginDto) => {
-    fetch('http://localhost:4000/login', {
+    fetch(`${API_PATH}/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -65,6 +67,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       .then((response) => response.json())
       .then((data) => data as LoginResponse)
       .then((loginResponse) => {
+        console.log('loginResponse', loginResponse);
         if (loginResponse.successful) {
           updateAuthToken(loginResponse.result);
         } else {
@@ -73,19 +76,26 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       });
   };
 
-  const logout = () => {
-    setAuthToken(null);
-    setUser(null);
-    removeItem('AUTH_TOKEN');
+  const logout = (token: string) => {
+    fetch(`${API_PATH}/logout`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: token,
+      },
+    }).then(() => {
+      setAuthToken(null);
+      setUser(null);
+      removeItem(AUTH_TOKEN);
+    });
   };
 
   useEffect(() => {
-    const token = getItem('AUTH_TOKEN');
+    const token = getItem(AUTH_TOKEN);
     if (token) {
       if (!authToken?.length) {
         setAuthToken(token);
       }
-      //navigate(`/${PathRoutes.Courses}`);
+      navigate(`/${PathRoutes.Courses}`);
       getUser(token);
     } else {
       navigate(`/${PathRoutes.Login}`);

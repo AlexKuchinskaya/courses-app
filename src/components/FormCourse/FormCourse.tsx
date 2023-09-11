@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { Input } from '../common/Input/Input';
 
-import './CreateCourse.scss';
+import './FormCourse.scss';
 import { useNavigate } from 'react-router-dom';
 import { ButtonTexts } from '@enums/buttonTexts';
 import { Button } from '@components/common/Button/Button';
@@ -22,6 +22,7 @@ import { AuthorType, AuthorsList } from '@types';
 import { deleteAuthorsAction } from '@store/authors/actions';
 import { getAuthors } from '@store/authors/selectors';
 import { PathRoutes } from '@enums/pathRoutes';
+import { useAuthContext } from '@contexts/AuthContext';
 
 type CourseInput = {
   title: string;
@@ -30,11 +31,11 @@ type CourseInput = {
   courseAuthors: AuthorsList;
 };
 
-export const CreateCourse: FC = () => {
+export const FormCourse: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const courses = useAppSelector(getCourses);
   const authors = useAppSelector(getAuthors);
+  const { authToken } = useAuthContext();
 
   const [course, setCourse] = useState<CourseInput>({
     title: '',
@@ -49,20 +50,24 @@ export const CreateCourse: FC = () => {
     isDurationError: false,
   });
 
-  const [isSuccessful, setSuccessful] = useState(true);
-
   const validateInputs = () => {
     const newErrors = {
       isTitleError: course.title.length <= 2,
       isDurationError: course.duration <= 0,
       isDescriptionError: course.description.length <= 2,
     };
+    console.log('newErrors', newErrors);
 
     setErrors(newErrors);
+    return Object.keys(newErrors).every((key) => errors[key] === true);
   };
 
   const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setCourse({ ...course, [e.target.name]: e.target.value });
+    const inputValue = e.target.value;
+    if (e.target.name === 'duration') {
+      parseInt(inputValue, 10);
+    }
+    setCourse({ ...course, [e.target.name]: inputValue });
   };
 
   const handleChangeTextAreaValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -71,22 +76,29 @@ export const CreateCourse: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    validateInputs();
 
-    if (isSuccessful) {
+    console.log('eerors', errors);
+    if (validateInputs()) {
       dispatch(
-        addNewCourseAction({
-          ...course,
-          authors: course.courseAuthors.map((el) => el.id),
-        })
+        addNewCourseAction(
+          {
+            ...course,
+            duration: Number(course.duration),
+            authors: course.courseAuthors.map((el) => el.id),
+          },
+          authToken
+        )
       );
-      //navigate('/courses');
-      console.log('courses', courses);
+      navigate(`/${PathRoutes.Courses}`);
     }
   };
 
-  const handleDeleteAuthorFromCourseAuthors = () => {
+  const handleDeleteAuthorFromCourseAuthors = (author: AuthorType) => {
     console.log('handleDeleteAuthorFromCourseAuthors');
+    const filteredCourseAuthorsList = course.courseAuthors.filter(
+      (authorCourse) => authorCourse !== author
+    );
+    setCourse({ ...course, courseAuthors: filteredCourseAuthorsList });
   };
 
   const getCurrentAuthor = (list: AuthorsList, id: string) =>
@@ -108,36 +120,19 @@ export const CreateCourse: FC = () => {
     dispatch(deleteAuthorsAction(authorId));
   };
 
-  const handleAddAuthorToCourseList = (authorId: AuthorType['id']) => {
-    console.log('authorId', authorId);
+  const handleAddAuthorToCourseList = (author: AuthorType) => {
+    console.log('authorId', author);
     const currentAuthorCourse = getCurrentAuthor(
       course.courseAuthors,
-      authorId
+      author.id
     );
 
-    console.log('currentAuthorCourse', currentAuthorCourse);
-
-    if (currentAuthorCourse === undefined) {
+    if (!currentAuthorCourse) {
       setCourse({
         ...course,
-        courseAuthors: [...course.courseAuthors, currentAuthorCourse],
+        courseAuthors: [...course.courseAuthors, author],
       });
     }
-    /* const isAuthorInCourse = course.courseAuthors.some(
-      (author) => author.id === authorId
-    );
-  
-    if (isAuthorInCourse) {
-      return
-    }
-    // Add the author only if they are not already in the list
-    const newAuthor = getCurrentAuthor(authors, authorId); // Assuming you have a list of authors accessible here
-    if (newAuthor) {
-      setCourse({
-        ...course,
-        courseAuthors: [...course.courseAuthors, newAuthor],
-      });
-    } */
   };
 
   const handleCancel = () => {
@@ -209,7 +204,7 @@ export const CreateCourse: FC = () => {
                           handleDeleteFromAuthorsList(author.id)
                         }
                         onClickAddAuthor={() =>
-                          handleAddAuthorToCourseList(author.id)
+                          handleAddAuthorToCourseList(author)
                         }
                       />
                     );
@@ -226,8 +221,8 @@ export const CreateCourse: FC = () => {
                         <AuthorItem
                           key={author.id}
                           name={author.name}
-                          onClickDeleteAuthor={
-                            handleDeleteAuthorFromCourseAuthors
+                          onClickDeleteAuthor={() =>
+                            handleDeleteAuthorFromCourseAuthors(author)
                           }
                         />
                       );
