@@ -24,7 +24,6 @@ export const AuthorList: FC = () => {
 
   const handleCreateAuthor = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(authorValue);
     if (!authorValue.trim().length) {
       setIsAuthorValueError(true);
       return;
@@ -40,8 +39,6 @@ export const AuthorList: FC = () => {
     }
 
     dispatch(addAuthorAction(authorValue, authToken));
-    //dispatch(addAuthorsAction({ name: authorValue }));
-    console.log('authorsList', authorsList);
     setAuthorValue('');
     setIsAuthorValueError(false);
   };

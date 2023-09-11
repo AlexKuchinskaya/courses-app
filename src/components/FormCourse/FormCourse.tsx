@@ -56,7 +56,6 @@ export const FormCourse: FC = () => {
       isDurationError: course.duration <= 0,
       isDescriptionError: course.description.length <= 2,
     };
-    console.log('newErrors', newErrors);
 
     setErrors(newErrors);
     return Object.keys(newErrors).every((key) => errors[key] === true);
@@ -77,7 +76,6 @@ export const FormCourse: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log('eerors', errors);
     if (validateInputs()) {
       dispatch(
         addNewCourseAction(
@@ -121,7 +119,6 @@ export const FormCourse: FC = () => {
   };
 
   const handleAddAuthorToCourseList = (author: AuthorType) => {
-    console.log('authorId', author);
     const currentAuthorCourse = getCurrentAuthor(
       course.courseAuthors,
       author.id

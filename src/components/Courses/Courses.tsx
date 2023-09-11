@@ -31,7 +31,6 @@ export const Courses: FC = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data authors', data);
         return data.result as AuthorsList;
       })
       .then((authors) => dispatch(saveAuthorsAction(authors)));

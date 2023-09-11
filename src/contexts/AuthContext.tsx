@@ -67,7 +67,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       .then((response) => response.json())
       .then((data) => data as LoginResponse)
       .then((loginResponse) => {
-        console.log('loginResponse', loginResponse);
         if (loginResponse.successful) {
           updateAuthToken(loginResponse.result);
         } else {
