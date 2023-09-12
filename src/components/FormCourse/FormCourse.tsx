@@ -8,7 +8,7 @@ import React, {
 import { Input } from '../common/Input/Input';
 
 import './FormCourse.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ButtonTexts } from '@enums/buttonTexts';
 import { Button } from '@components/common/Button/Button';
 import { Textarea } from '@components/common/Textarea/Textarea';
@@ -23,6 +23,7 @@ import { deleteAuthorsAction } from '@store/authors/actions';
 import { getAuthors } from '@store/authors/selectors';
 import { PathRoutes } from '@enums/pathRoutes';
 import { useAuthContext } from '@contexts/AuthContext';
+import { Duration } from '@components/common/Duration/Duration';
 
 type CourseInput = {
   title: string;
@@ -32,6 +33,7 @@ type CourseInput = {
 };
 
 export const FormCourse: FC = () => {
+  const { courseId } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const authors = useAppSelector(getAuthors);
@@ -180,12 +182,8 @@ export const FormCourse: FC = () => {
                 error={errors.isDurationError}
                 onChange={handleChangeInputValue}
                 min={0}
-                children={
-                  <div className="create-course__format-duration">
-                    {getCourseDuration(course.duration)}
-                  </div>
-                }
               />
+              <Duration duration={course.duration} isCoursePage={true} />
             </fieldset>
 
             <div className="create-course__authors-list">

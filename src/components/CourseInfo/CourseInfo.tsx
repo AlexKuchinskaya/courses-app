@@ -9,6 +9,7 @@ import { getAuthors } from '@store/authors/selectors';
 import { getCourses } from '@store/courses/selectors';
 import { getCourseDuration } from '@utils/getCourseDuration';
 import { authorsHelper } from '@utils/authorHelpers';
+import { Duration } from '@components/common/Duration/Duration';
 
 export const CourseInfo: FC = () => {
   const courses = useAppSelector(getCourses);
@@ -43,7 +44,7 @@ export const CourseInfo: FC = () => {
               />
               <CourseDetails
                 title={'Duration:'}
-                value={getCourseDuration(course.duration)}
+                value={<Duration duration={course.duration} />}
                 className="course-details--info"
               />
               <CourseDetails

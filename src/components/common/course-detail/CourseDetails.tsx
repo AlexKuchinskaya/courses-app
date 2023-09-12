@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './CourseDetails.scss';
 
 type CourseDetailProps = {
   title: string;
-  value: string | number;
+  value: string | number | ReactNode;
   className?: string;
 };
 

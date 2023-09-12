@@ -14,6 +14,7 @@ import { getCourseDuration } from '@utils/getCourseDuration';
 import { authorsHelper } from '@utils/authorHelpers';
 import { useAuthContext } from '@contexts/AuthContext';
 import { deleteCourseAction } from '@store/courses/actions';
+import { Duration } from '@components/common/Duration/Duration';
 
 type CourseCardProps = {
   course: CourseType;
@@ -51,7 +52,7 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
 
             <CourseDetails
               title={'Duration:'}
-              value={getCourseDuration(course.duration)}
+              value={<Duration duration={course.duration} />}
             />
 
             <CourseDetails
@@ -73,11 +74,17 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
                   icon={<DeleteIcon />}
                   onClick={handleDeleteCourse}
                 />
-                <Button
+               {/*  <Button
                   className="button__small course-card__btn--edit"
                   icon={<EditIcon />}
                   onClick={hadleEditCourse}
-                />
+                /> */}
+                <Link
+                  to={`/courses/update/${course.id}`}
+                  className="button course-card__btn"
+                >
+                  <EditIcon />
+                </Link>
               </>
             )}
           </div>
