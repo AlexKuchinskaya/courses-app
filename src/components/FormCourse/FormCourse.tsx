@@ -189,45 +189,51 @@ export const FormCourse: FC = () => {
             <div className="create-course__authors-list">
               <div className="create-course__authors-container">
                 <AuthorList />
-                <div className="author-list__list-container">
+                <ul className="author-list__list-container">
                   {authors.map((author) => {
                     return (
-                      <AuthorItem
-                        key={author.id}
-                        name={author.name}
-                        onClickDeleteAuthor={() =>
-                          handleDeleteFromAuthorsList(author.id)
-                        }
-                        onClickAddAuthor={() =>
-                          handleAddAuthorToCourseList(author)
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="create-course__authors-container">
-                <h3 className="create-course__title">Course Authors</h3>
-                <div className="create-course__course-authors">
-                  {course.courseAuthors.length ? (
-                    course.courseAuthors.map((author, id) => {
-                      return (
+                      <li className="author-list__item">
                         <AuthorItem
                           key={author.id}
                           name={author.name}
                           onClickDeleteAuthor={() =>
-                            handleDeleteAuthorFromCourseAuthors(author)
+                            handleDeleteFromAuthorsList(author.id)
+                          }
+                          onClickAddAuthor={() =>
+                            handleAddAuthorToCourseList(author)
                           }
                         />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div className="create-course__authors-container">
+                <h3 className="create-course__title">Course Authors</h3>
+                <ul className="create-course__course-authors">
+                  {course.courseAuthors.length ? (
+                    course.courseAuthors.map((author, id) => {
+                      return (
+                        <li className="create-course__item">
+                          <AuthorItem
+                            key={author.id}
+                            name={author.name}
+                            onClickDeleteAuthor={() =>
+                              handleDeleteAuthorFromCourseAuthors(author)
+                            }
+                          />
+                        </li>
                       );
                     })
                   ) : (
-                    <p className="create-course__course-authors-empty">
-                      Author list is empty
-                    </p>
+                    <li className="create-course__item">
+                      <p className="create-course__course-authors-empty">
+                        Author list is empty
+                      </p>
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
             </div>
           </div>

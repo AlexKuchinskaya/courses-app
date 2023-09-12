@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, ReactNode, KeyboardEvent } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 import './Input.scss';
 
 type InputProps = {
@@ -8,7 +8,6 @@ type InputProps = {
   value: string | number;
   name?: string;
   className?: string;
-  children?: ReactNode;
   min?: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -21,7 +20,6 @@ export const Input: FC<InputProps> = ({
   value,
   name,
   className,
-  children,
   min,
   onChange,
   onKeyUp,
@@ -47,7 +45,6 @@ export const Input: FC<InputProps> = ({
         {error && (
           <div className="input__error-message">{`${name} is required`}</div>
         )}
-        {children}
       </div>
     </div>
   );
