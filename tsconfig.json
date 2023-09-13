@@ -16,6 +16,7 @@
         "@types": ["./src/types"],
         "@enums/*": ["./src/enums/*"],
         "@store/*": ["./src/store/*"],
+        "@services/*": ["./src/services/*"],
       }
     },
     "include": [

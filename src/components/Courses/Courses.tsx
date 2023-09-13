@@ -9,6 +9,8 @@ import { useAppDispatch, useAppSelector } from '@store/utils';
 import { saveAuthorsAction } from '@store/authors/actions';
 import { saveCoursesAction } from '@store/courses/actions';
 import { getCourses } from '@store/courses/selectors';
+import { useAuthContext } from '@contexts/AuthContext';
+import { API_PATH } from '@enums/pathApi';
 
 type CourseInfoState = {
   isCourseInfoOpened: boolean;
@@ -17,26 +19,18 @@ type CourseInfoState = {
 
 export const Courses: FC = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAuthContext();
 
   useEffect(() => {
-    fetch('http://localhost:4000/courses/all', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('data', data);
-        return data.result as CourseType[];
-      })
-      .then((courses) => dispatch(saveCoursesAction(courses)));
+    dispatch(saveCoursesAction());
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/authors/all', {
+    fetch(`${API_PATH}/authors/all`, {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data authors', data);
         return data.result as AuthorsList;
       })
       .then((authors) => dispatch(saveAuthorsAction(authors)));
@@ -61,9 +55,11 @@ export const Courses: FC = () => {
         <div className="courses">
           <div className="courses__wrapper container-site">
             <div className="courses__top-container">
-              <Link to={'/courses/add'} className="button">
-                {ButtonTexts.AddNewCourse}
-              </Link>
+              {user?.role === 'admin' && (
+                <Link to={'/courses/add'} className="button">
+                  {ButtonTexts.AddNewCourse}
+                </Link>
+              )}
             </div>
             <ul className="courses__list">
               {courses.map((course) => {

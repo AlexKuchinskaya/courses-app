@@ -1,9 +1,8 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import './AuthorItem.scss';
 import { Button } from '@components/common/Button/Button';
 import { DeleteIcon } from '@components/assets/DeleteIcon';
 import { AddIcon } from '@components/assets/AddIcon';
-import { AuthorType } from '@types';
 
 type AuthorItemType = {
   name: string;
@@ -24,11 +23,13 @@ export const AuthorItem: FC<AuthorItemType> = ({
         icon={<DeleteIcon />}
         onClick={onClickDeleteAuthor}
       />
-      <Button
-        className={'authors-item__btn'}
-        icon={<AddIcon />}
-        onClick={onClickAddAuthor}
-      />
+      {onClickAddAuthor && (
+        <Button
+          className={'authors-item__btn'}
+          icon={<AddIcon />}
+          onClick={onClickAddAuthor}
+        />
+      )}
     </div>
   );
 };

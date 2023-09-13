@@ -16,7 +16,7 @@ const Header: FC = () => {
     location.pathname !== PathRoutes.Registration;
 
   const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
-  const handleAuthentification = () => logout();
+  const handleAuthentification = () => logout(authToken);
   return (
     <div className="header">
       <div className="header__container">

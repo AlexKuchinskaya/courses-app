@@ -21,9 +21,9 @@ type AuthorizationProps = {
 };
 
 type UserInput = {
-  name: string | undefined;
-  email: string | undefined;
-  password: string | undefined;
+  name: string;
+  email: string;
+  password: string;
 };
 
 const authorizationOptions = {
@@ -52,9 +52,9 @@ export const Authorization: FC<AuthorizationProps> = ({
   });
 
   const [user, setUser] = useState<UserInput>({
-    name: undefined,
-    email: undefined,
-    password: undefined,
+    name: '',
+    email: '',
+    password: '',
   });
 
   const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {

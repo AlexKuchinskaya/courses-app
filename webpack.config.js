@@ -50,6 +50,7 @@ module.exports = {
       '@types': path.resolve(__dirname, 'src/types'),
       '@enums': path.resolve(__dirname, 'src/enums'),
       '@store': path.resolve(__dirname, 'src/store'),
+      '@services': path.resolve(__dirname, 'src/services'),
     },
   },
   plugins: [

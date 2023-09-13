@@ -1,6 +1,7 @@
 import { UserRegisterDto } from '@types';
 import { useNavigate } from 'react-router-dom';
 import { PathRoutes } from '@enums/pathRoutes';
+import { API_PATH } from '@enums/pathApi';
 
 export type RegisterResponse = {
   successful: boolean;
@@ -11,7 +12,7 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   const register = (user: UserRegisterDto) => {
-    fetch('http://localhost:4000/register', {
+    fetch(`${API_PATH}/register`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
