@@ -24,6 +24,7 @@ import { getAuthors } from '@store/authors/selectors';
 import { PathRoutes } from '@enums/pathRoutes';
 import { useAuthContext } from '@contexts/AuthContext';
 import { Duration } from '@components/common/Duration/Duration';
+import { CourseAuthors } from './components/CourseAuthors/CourseAuthors';
 
 type CourseInput = {
   title: string;
@@ -192,9 +193,8 @@ export const FormCourse: FC = () => {
                 <ul className="author-list__list-container">
                   {authors.map((author) => {
                     return (
-                      <li className="author-list__item">
+                      <li className="author-list__item" key={author.id}>
                         <AuthorItem
-                          key={author.id}
                           name={author.name}
                           onClickDeleteAuthor={() =>
                             handleDeleteFromAuthorsList(author.id)
@@ -209,32 +209,10 @@ export const FormCourse: FC = () => {
                 </ul>
               </div>
 
-              <div className="create-course__authors-container">
-                <h3 className="create-course__title">Course Authors</h3>
-                <ul className="create-course__course-authors">
-                  {course.courseAuthors.length ? (
-                    course.courseAuthors.map((author, id) => {
-                      return (
-                        <li className="create-course__item">
-                          <AuthorItem
-                            key={author.id}
-                            name={author.name}
-                            onClickDeleteAuthor={() =>
-                              handleDeleteAuthorFromCourseAuthors(author)
-                            }
-                          />
-                        </li>
-                      );
-                    })
-                  ) : (
-                    <li className="create-course__item">
-                      <p className="create-course__course-authors-empty">
-                        Author list is empty
-                      </p>
-                    </li>
-                  )}
-                </ul>
-              </div>
+              <CourseAuthors
+                courseAuthors={course.courseAuthors}
+                onClickDeleteAuthor={handleDeleteAuthorFromCourseAuthors}
+              />
             </div>
           </div>
 

@@ -10,7 +10,6 @@ import { DeleteIcon } from '@components/assets/DeleteIcon';
 import { useAppDispatch, useAppSelector } from '@store/utils';
 import { getAuthors } from '@store/authors/selectors';
 import { getCourseCreationDate } from '@utils/getCourseCreationDate';
-import { getCourseDuration } from '@utils/getCourseDuration';
 import { authorsHelper } from '@utils/authorHelpers';
 import { useAuthContext } from '@contexts/AuthContext';
 import { deleteCourseAction } from '@store/courses/actions';
@@ -74,11 +73,6 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
                   icon={<DeleteIcon />}
                   onClick={handleDeleteCourse}
                 />
-               {/*  <Button
-                  className="button__small course-card__btn--edit"
-                  icon={<EditIcon />}
-                  onClick={hadleEditCourse}
-                /> */}
                 <Link
                   to={`/courses/update/${course.id}`}
                   className="button course-card__btn"
