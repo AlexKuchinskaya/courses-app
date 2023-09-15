@@ -51,6 +51,7 @@ module.exports = {
       '@enums': path.resolve(__dirname, 'src/enums'),
       '@store': path.resolve(__dirname, 'src/store'),
       '@services': path.resolve(__dirname, 'src/services'),
+      '@__mocks__': path.resolve(__dirname, 'src/__mocks__'),
     },
   },
   plugins: [

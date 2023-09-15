@@ -38,6 +38,14 @@ root.render(
                   </PrivateRoute>
                 }
               />
+              <Route
+                path={PathRoutes.CourseUpdate}
+                element={
+                  <PrivateRoute>
+                    <FormCourse />
+                  </PrivateRoute>
+                }
+              />
             </Route>
           </Routes>
         </AuthContextProvider>
