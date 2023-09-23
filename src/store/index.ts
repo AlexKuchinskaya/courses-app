@@ -6,7 +6,7 @@ import { authorsInitialState } from './authors/reducer';
 import { applyMiddleware } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-const appInitialState = {
+export const appInitialState = {
   courses: coursesInitialState,
   authors: authorsInitialState,
 };

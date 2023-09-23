@@ -17,19 +17,15 @@
         "@enums/*": ["./src/enums/*"],
         "@store/*": ["./src/store/*"],
         "@services/*": ["./src/services/*"],
-        "@__mocks__/*": ["./src/__mocks__/*"],
+        "@tests/*": ["./src/tests/*"],
       },
-      "types": [
-        "node",
-        "jest",
-        "@testing-library/jest-dom"
-      ],
     },
     "include": [
       "**/*.ts",
       "**/*.tsx",
       "src/**/*",
       "src/declaration.d.ts",
-      "src/utils/testing/setup-tests.ts"
+      "src/utils/tests/setupTests.ts"
+
     ]
   }

@@ -1,82 +1,100 @@
 import React from 'react';
-//import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Header from '../Header';
+import { AuthContext, AuthContextType } from '@contexts/AuthContext';
+import { User } from '@types';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-test('renders Header component', () => {
-  /* const testProps = {
-    className: 'test-class',
-    isDarkMode: false,
-  }; */
-  const header = render(<Header />);
-  console.log('header', header);
-});
+const mockedUsedNavigate = jest.fn();
 
-describe('Footer component:', () => {
-  test('renders Header component', () => {
-    /* const testProps = {
-      className: 'test-class',
-      isDarkMode: false,
-    }; */
-    const header = render(<Header />);
-    console.log('header', header);
-  });
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+  useLocation: jest
+    .fn()
+    .mockReturnValue({
+      pathname: '/login',
+      search: '',
+      state: null,
+      hash: '',
+    })
+    .mockReturnValueOnce({
+      pathname: '/courses',
+      search: '',
+      state: null,
+      hash: '',
+    }),
+}));
 
-  /*  const testProps = {
-    className: 'test-class',
-    isDarkMode: false,
+describe('Header component:', () => {
+  const mockedUser: User = {
+    id: '222',
+    name: 'Admin',
+    email: 'admin@email.com',
+    role: 'admin',
+    password: '2222',
   };
 
-  
-  const mockedReducer = combineReducers({ settings: settingsSlice.reducer });
-  const mockedState = { settings: settingsInitialState };
+  let authConextStatus: AuthContextType = {
+    user: mockedUser,
+    setUser: jest.fn,
+    authToken: '1234',
+    setAuthToken: jest.fn,
+    login: jest.fn,
+    logout: jest.fn,
+  };
 
-  beforeEach(() => {
-    renderWithRedux(<Footer {...testProps} />, mockedReducer, mockedState);
+  const wrapper = ({ children }) => (
+    <Router>
+      <AuthContext.Provider value={authConextStatus}>
+        {children}
+      </AuthContext.Provider>
+    </Router>
+  );
+
+  it('show the user name and button Logout if the user is logged', () => {
+    render(<Header />, { wrapper });
+
+    const logoutButton = screen.getByText('Logout');
+    const userName = screen.getByText('Admin');
+
+    expect(userName).toBeInTheDocument();
+    expect(logoutButton).toBeInTheDocument();
   });
 
-  it('renders the footer container', () => {
-    const footer = screen.getByRole('contentinfo');
-    expect(footer).toBeInTheDocument();
-    expect(footer).toHaveClass('footer');
+  it('renders the header element', () => {
+    render(<Header />, { wrapper });
+
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
+    expect(header).toHaveClass('header');
   });
 
-  it('displays the copyright info', () => {
-    expect(screen.getByText('© Dmitrii Suroviagin, 2023')).toBeInTheDocument();
+  it('contains the logo', () => {
+    render(<Header />, { wrapper });
+
+    const logo = screen.getByRole('img');
+
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveClass('logo');
   });
 
-  it('displays 3 links', () => {
-    const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(3);
-    for (const link of links) {
-      expect(link).toHaveProperty('target', '_blank');
-      expect(link).toHaveProperty('rel', 'noreferrer');
-    }
-  });
+  it('don´t show the user name and the button Logout if the user is not logged in', () => {
+    authConextStatus = {
+      user: null,
+      setUser: jest.fn,
+      authToken: null,
+      setAuthToken: jest.fn,
+      login: jest.fn,
+      logout: jest.fn,
+    };
 
-  it('all links have correct href attributes', () => {
-    const links = screen.getAllByRole('link');
-    expect(links[0]).toHaveProperty('href', externalLinks.mail);
-    expect(links[1]).toHaveProperty('href', externalLinks.linkedIn);
-    expect(links[2]).toHaveProperty('href', externalLinks.gitHub);
-  });
+    const { queryByText } = render(<Header />, { wrapper });
 
-  it('all links have icons', () => {
-    const links = screen.getAllByRole('link');
-    expect(links[0]).toHaveClass(Icon.Mail);
-    expect(links[1]).toHaveClass(Icon.LinkedIn);
-    expect(links[2]).toHaveClass(Icon.Github);
-  });
+    const userName = queryByText('Admin');
+    const logoutButton = queryByText('Logout');
 
-  it('all links have texts', () => {
-    const links = screen.getAllByRole('link');
-    expect(links[0]).toHaveAttribute('title', 'Mail');
-    expect(links[1]).toHaveAttribute('title', 'LinkedIn');
-    expect(links[2]).toHaveAttribute('title', 'GitHub');
+    expect(logoutButton).not.toBeInTheDocument();
+    expect(userName).not.toBeInTheDocument();
   });
-
-  it('should match the snapshot', () => {
-    const { asFragment } = renderWithRedux(<Footer {...testProps} />, mockedReducer, mockedState);
-    expect(asFragment()).toMatchSnapshot();
-  }); */
 });

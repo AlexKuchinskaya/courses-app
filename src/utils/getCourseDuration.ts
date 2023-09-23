@@ -9,6 +9,7 @@ export const getCourseDuration = (durationValueMin: number) => {
   const hourString = hours < TEN ? `0${hours}` : hours;
   const durationString = `${hourString}:${minString} `;
   const units = hours === ONE ? 'hour' : 'hours';
+  const result = `${durationString}${units}`;
 
-  return { durationString, units };
+  return { durationString, units, result };
 };
