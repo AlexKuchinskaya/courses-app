@@ -24,7 +24,6 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
   const dispatch = useAppDispatch();
   const authorsList = useAppSelector(getAuthors);
   // eslint-disable-next-line prettier/prettier
-  console.log('authorsList', authorsList)
   const coursesAuthorNames = authorsHelper
     .getListAuthors(authorsList, course.authors)
     .join(' ,');

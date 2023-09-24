@@ -50,12 +50,10 @@ export const deleteCourseAction = (
   };
 };
 
-//change save courses to init courses
 const getAllCourses = async () => {
   const response = await fetch(`${API_PATH}/courses/all`, {
     method: 'GET',
   });
-
   const responseToJson = await response.json();
   return responseToJson.result as CourseType[];
 };

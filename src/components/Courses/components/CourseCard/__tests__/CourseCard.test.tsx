@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-
 import { AuthContext, AuthContextType } from '@contexts/AuthContext';
 import { CourseType, User } from '@types';
 import { BrowserRouter as Router } from 'react-router-dom';

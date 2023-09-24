@@ -8,11 +8,13 @@ const getListAuthors = (
   authors: AuthorsList,
   authorsId: string[]
 ): string[] => {
-  console.log('authorsId', authorsId)
   let authorsList = [];
-  authorsId.forEach((el) => {
-    authorsList = [...authorsList, getAuthorById(authors, el)];
-  });
+
+  if (authorsId) {
+    authorsId.forEach((el) => {
+      authorsList = [...authorsList, getAuthorById(authors, el)];
+    });
+  }
 
   return authorsList;
 };

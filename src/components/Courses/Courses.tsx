@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { CourseCard } from './components/CourseCard/CourseCard';
 import './Courses.scss';
-import { AuthorsList, Course, CourseType } from '@types';
+import { Course } from '@types';
 import { ButtonTexts } from '@enums/buttonTexts';
 import { Link } from 'react-router-dom';
 import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
@@ -9,8 +9,7 @@ import { useAppDispatch, useAppSelector } from '@store/utils';
 import { saveAuthorsAction } from '@store/authors/actions';
 import { saveCoursesAction } from '@store/courses/actions';
 import { getCourses } from '@store/courses/selectors';
-import { useAuthContext } from '@contexts/AuthContext';
-import { API_PATH } from '@enums/pathApi';
+import { useAuthContext } from '@contexts/AuthContext';;
 
 type CourseInfoState = {
   isCourseInfoOpened: boolean;
@@ -26,17 +25,11 @@ export const Courses: FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${API_PATH}/authors/all`, {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        return data.result as AuthorsList;
-      })
-      .then((authors) => dispatch(saveAuthorsAction(authors)));
+    dispatch(saveAuthorsAction());
   }, []);
 
   const courses = useAppSelector(getCourses);
+  console.log('courses, ', courses.length);
   const [courseInfo, setCourseInfo] = useState<CourseInfoState>({
     isCourseInfoOpened: false,
     course: undefined,

@@ -2,6 +2,7 @@ import { AuthorType, AuthorsList } from '@types';
 import { AuthorsActionTypes } from './types';
 import { AppDispatch } from '@store/rootReducer';
 import { addAuthor } from '@services/authorsServices';
+import { API_PATH } from '@enums/pathApi';
 
 type SaveAuthorsAction = {
   type: AuthorsActionTypes.SAVE_AUTHORS;
@@ -18,10 +19,21 @@ type DeleteAuthorsAction = {
   payload: AuthorType['id'];
 };
 
-export const saveAuthorsAction = (payload: AuthorsList): SaveAuthorsAction => {
-  return {
-    type: AuthorsActionTypes.SAVE_AUTHORS,
-    payload,
+const getAllAuthors = async () => {
+  const response = await fetch(`${API_PATH}/authors/all`, {
+    method: 'GET',
+  });
+  const responseToJson = await response.json();
+  return responseToJson.result as AuthorsList;
+};
+
+export const saveAuthorsAction = () => {
+  return async (dispatch: AppDispatch) => {
+    const authors = await getAllAuthors();
+    dispatch({
+      type: AuthorsActionTypes.SAVE_AUTHORS,
+      payload: authors,
+    });
   };
 };
 

@@ -7,6 +7,7 @@
     "build": "webpack",
     "start": "webpack serve --mode development",
     "test": "jest",
+    "clear-jest": "jest --clearCache",
     "coverage": "jest --coverage --collectCoverageFrom='src/**/*.{ts,tsx}'"
   },
   "keywords": [],
