@@ -17,12 +17,15 @@
         "@enums/*": ["./src/enums/*"],
         "@store/*": ["./src/store/*"],
         "@services/*": ["./src/services/*"],
-      }
+        "@tests/*": ["./src/tests/*"],
+      },
     },
     "include": [
       "**/*.ts",
       "**/*.tsx",
       "src/**/*",
       "src/declaration.d.ts",
+      "src/utils/tests/setupTests.ts"
+
     ]
   }

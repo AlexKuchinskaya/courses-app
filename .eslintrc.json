@@ -8,16 +8,18 @@
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint",
-      "prettier"
+      "prettier",
+      "jest-dom"
     ],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
-      "prettier"
+      "prettier",
+      "plugin:jest-dom/recommended"
     ],
     "rules": {
-        "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/no-var-requires": "off",
       "prettier/prettier": [
         "error", {
           "printWidth": 80,
@@ -40,7 +42,11 @@
       ],
   
       "@typescript-eslint/no-namespace": "off",
-      "no-duplicate-imports": "error"
+      "no-duplicate-imports": "error",
+      "jest-dom/prefer-checked": "error",
+      "jest-dom/prefer-enabled-disabled": "error",
+      "jest-dom/prefer-required": "error",
+      "jest-dom/prefer-to-have-attribute": "error"
     }
   }
   

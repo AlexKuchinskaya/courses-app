@@ -24,11 +24,9 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
   const dispatch = useAppDispatch();
   const authorsList = useAppSelector(getAuthors);
   // eslint-disable-next-line prettier/prettier
-  const coursesAuthorNames = authorsHelper.getListAuthors(authorsList, course.authors).join(' ,');
-
-  const hadleEditCourse = () => {
-    console.log('onEditCourse');
-  };
+  const coursesAuthorNames = authorsHelper
+    .getListAuthors(authorsList, course.authors)
+    .join(' ,');
 
   const handleDeleteCourse = () => {
     dispatch(deleteCourseAction(course.id, authToken));

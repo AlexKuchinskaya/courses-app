@@ -11,7 +11,7 @@ export const EmptyCourseList: FC = () => {
     <div className="course-empty">
       <h3 className="course-empty__title">Your List Is Empty</h3>
       <p className="course-empty__description">
-        Please use ’Add New Course’ button to add your first course
+        Please use "Add New Course" button to add your first course
       </p>
       {user?.role === 'admin' ? (
         <Link className="button" to={'/courses/add'}>

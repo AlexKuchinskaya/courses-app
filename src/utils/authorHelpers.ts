@@ -9,9 +9,12 @@ const getListAuthors = (
   authorsId: string[]
 ): string[] => {
   let authorsList = [];
-  authorsId.forEach((el) => {
-    authorsList = [...authorsList, getAuthorById(authors, el)];
-  });
+
+  if (authorsId) {
+    authorsId.forEach((el) => {
+      authorsList = [...authorsList, getAuthorById(authors, el)];
+    });
+  }
 
   return authorsList;
 };

@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 import { User, UserLoginDto } from '@types';
 import { PathRoutes } from '@enums/pathRoutes';
@@ -18,7 +18,7 @@ export type LoginResponse = {
   result: string;
 };
 
-type AuthContextType = {
+export type AuthContextType = {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User>>;
   authToken: string | null;

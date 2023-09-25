@@ -12,23 +12,25 @@ const Header: FC = () => {
   const { authToken, user, logout } = useAuthContext();
   const location = useLocation();
   const isAuthLocation =
-    location.pathname !== PathRoutes.Login &&
-    location.pathname !== PathRoutes.Registration;
+    location.pathname !== `/${PathRoutes.Login}` &&
+    location.pathname !== `/${PathRoutes.Registration}`;
 
-  const buttonText = authToken ? ButtonTexts.Logout : ButtonTexts.Login;
   const handleAuthentification = () => logout(authToken);
   return (
-    <div className="header">
+    <header className="header">
       <div className="header__container">
         <HeaderLogo logo={logo} width={111} height={48} />
         <div className="header__login">
           {user?.name && <span className="header__user-name">{user.name}</span>}
           {isAuthLocation && (
-            <Button text={buttonText} onClick={handleAuthentification} />
+            <Button
+              text={ButtonTexts.Logout}
+              onClick={handleAuthentification}
+            />
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
